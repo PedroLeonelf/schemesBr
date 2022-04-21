@@ -1,0 +1,5 @@
+entity(Pessoa, RG, key ID, Endereco)
+entity(Doacao, key id, doador, Total)
+entity(Instituicao, key ID, Nome, Qtd, Preco)
+relation(Realiza, Pessoa [1:1], Doacao [1:n])
+relation(Possui, Doacao [1:1], Instituicao [1:n])

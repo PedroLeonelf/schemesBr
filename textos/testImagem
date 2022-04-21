@@ -1,0 +1,8 @@
+entity(produto, key tipo, nome, valor)
+entity(pessoa, cpf [1:1], nome, idade )
+entity(mercado, key nome)
+entity(dinheiro, key id, valor)
+relation(gera, produto [1:1], dinheiro [1:n])
+relation(compra, pessoa [1:1], produto [1:n])
+relation(recebe, mercado [1:n], dinheiro [1:n])
+attribute(recebe, qtd, teste)

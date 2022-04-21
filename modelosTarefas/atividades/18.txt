@@ -1,0 +1,5 @@
+entity(ator, nome-real, data-nasc, nome-art)
+entity(video, titulo, categoria)
+entity(usuario, nome, sobrenome, pais, email)
+relation(ator-video, ator [0:n], video [1:n])
+relation(video-usuario, video [0:n], usuario [0:n])

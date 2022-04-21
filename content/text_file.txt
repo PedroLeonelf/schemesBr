@@ -1,0 +1,66 @@
+@startuml
+Entity Maquina{
++ endereco-de-ip
+--
+}
+Entity Usuario{
++ email
+--
+- nome
+- sobrenome
+- pais-de-origem
+}
+Entity Nao-registrado{
+}
+Entity Resolucao{
+}
+Entity Video{
++ titulo
+--
+- numero-do-episodio
+- temporada
+- filme
+}
+Entity Ator{
++ nome-real
+--
+- data-de-nascimento
+}
+Entity Seriado{
++ titulo
+--
+- categoria
+}
+package Video-seriado <<Cloud>> {
+}
+Video }|--> Video-seriado : [1:N]
+Video-seriado <--|| Seriado : [1:1]
+package Video-ator <<Cloud>> {
+}
+Video }o--> Video-ator : [0:N]
+Video-ator <--|| Ator : [1:1]
+package Seriado-ator <<Cloud>> {
+}
+Seriado }o--> Seriado-ator : [0:N]
+Seriado-ator <--|| Ator : [1:1]
+package Video-usuario <<Cloud>> {
+}
+Video |o--> Video-usuario : [0:1]
+Video-usuario <--o{ Usuario : [0:N]
+package Video-maquina <<Cloud>> {
+}
+Video |o--> Video-maquina : [0:1]
+Video-maquina <--o{ Maquina : [0:N]
+package Video-resolucao <<Cloud>> {
+}
+Video |o--> Video-resolucao : [0:1]
+Video-resolucao <--|| Resolucao : [1:1]
+package Resolucao-video <<Cloud>> {
+}
+Resolucao ||--> Resolucao-video : [1:1]
+Resolucao-video <--o{ Maquina : [0:N]
+package Maquina-usuario <<Cloud>> {
+}
+Maquina }|--> Maquina-usuario : [1:N]
+Maquina-usuario <--|| Usuario : [1:1]
+@enduml

@@ -1,0 +1,5 @@
+entity(Pessoa, key RG, id, renda)
+entity(Doacao, key codigo, doador, valor)
+entity(Instituicao, key id, Nome, orgao, local)
+relation(Realiza, Pessoa [1:1], Doacao [1:n])
+relation(Possui, Doacao [1:1], Instituicao [1:n])

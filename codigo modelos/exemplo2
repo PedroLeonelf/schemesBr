@@ -1,0 +1,5 @@
+entity(Pessoa, CPF, key ID, Endereco)
+entity(Compra, key ID, Data, Total)
+entity(Item, key ID, Nome, Qtd, Preco)
+relation(Realiza, Pessoa [1:1], Compra [1:n])
+relation(Possui, Compra [1:1], Item [1:n])

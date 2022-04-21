@@ -1,0 +1,12 @@
+entity(conexao)
+entity(maquina, key endereco-ip, resolucao)
+entity(usuario, key codigo, nome-completo, pais, email)
+entity(video, key codigo, categoria, titulo, temporada, seriado)
+entity(atuacao)
+entity(ator, key codigo, nome-artistico, nome-real, data-de-nascimento)
+relation(conexao-maquina, conexao [0:n], maquina [1:1])
+relation(conexao-usuario, conexao [0:n], usuario [1:1])
+relation(maquina-video, maquina [1:1], video [0:1])
+relation(video-atuacao, video [1:1], atuacao [0:n])
+relation(atuacao-ator, ator [1:1], atuacao [0:n])
+

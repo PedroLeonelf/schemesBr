@@ -1,0 +1,18 @@
+Cliente:
+	string key cpf
+	string nome
+	int idade
+
+Produto:
+	int key id
+	string nome
+	float valor
+
+Cliente(string key cpf, string nome, int idade)
+Produto(int key id, string nome, float valor)
+
+Relation(Cliente,(1:1),(1:N),Produto)
+
+Relation(Cliente,(1:1),(1:N),Produto)
+
+one Cliente relates many Produto

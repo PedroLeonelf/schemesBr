@@ -1,0 +1,6 @@
+Entity(Pessoa, Nome, Cpf)
+Entity(Atendente, valorCaixa, data)
+Entity(Mercado)
+
+Relation(Paga, Pessoa [1:1], Atendente [1:1])
+Relation(RecebeSalario, Atendente [1:n], Mercado [1:1])
