@@ -130,11 +130,14 @@ def lcs(string1, string2):
 
 def lcs_init(string1, string2):
     return lcs(string1 ,string2) / min(len(string1),len(string2))
+
+
+
   
 
 
 
-# print(similiarityBetweenStrings('qtd', 'quantidade')) #sim 46%
+print(similiarityBetweenStrings('qtd', 'quantidade')) #sim 46%
 
 # print(abbreviationDetector('cpf', 'codigo_pessoa_fisica')) #sim 100%
 
