@@ -298,28 +298,29 @@ def teste_arquivos(arq1, arq2):
 # teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo10')# 62
 # teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo11')
 
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/1.txt') # 87
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/2.txt') # 91
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/3.txt') # 85
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/4.txt') # 79 min
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/5.txt') # 87
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/6.txt') # 90
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/7.txt') # 93
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/8.txt') # 90
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/9.txt') # 86
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/1.txt') # 88
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/2.txt') # 93
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/3.txt') # 87
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/4.txt') # 81 
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/5.txt') # 88
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/6.txt') # 87
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/7.txt') # 90
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/8.txt') # 92
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/9.txt') # 87
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/10.txt')# 94 
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/11.txt')# 83
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/12.txt')# 84
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/11.txt')# 84
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/12.txt')# 86
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/13.txt')# 90
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/14.txt')# 89
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/14.txt')# 90
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/15.txt')# 98 max
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/16.txt')# 86
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/17.txt')# 86
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/18.txt')# 87
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/19.txt')# 80
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/16.txt')# 88
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/17.txt')# 88
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/18.txt')# 88
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/19.txt')# 82
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/20.txt')# 83
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/21.txt')# 87
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/22.txt')# 90
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/21.txt')# 88
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/22.txt')# 92
+teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/23.txt')# 
 
 
 
