@@ -22,7 +22,7 @@ class blocoDeNotas:
             [smp.Menu(layoutMenu)],
             [smp.Text("New file", font=("Consolas", 10), size=(WIN_W, 1), key="_INFO_")],
             [smp.Multiline(font=("Consolas", 12), size=(WIN_W-30, WIN_H-10), key="_BODY_")],
-            [smp.Output(font=('Consolas', 10), size=(WIN_W,5), key="_CONSOLE_")]
+            [smp.Output(font=('Consolas', 10), size=(WIN_W,WIN_H-25), key="_CONSOLE_")]
             ]
 
         self.window = smp.Window("Modelo Conceitual", layout=layout, margins=(0,0), resizable=True, return_keyboard_events=True, finalize=True)

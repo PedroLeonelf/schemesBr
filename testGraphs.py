@@ -284,7 +284,7 @@ def getGrafo(modelo):
 def teste_arquivos(arq1, arq2):
     sim.graphSimiliarity(getGrafo(retorna_modelo(arq1)), getGrafo(retorna_modelo(arq2)))
 
-
+teste_artigo()
 
 # teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo1') # 100
 # teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo2') # 98
@@ -301,7 +301,7 @@ def teste_arquivos(arq1, arq2):
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/1.txt') # 88
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/2.txt') # 93
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/3.txt') # 87
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/4.txt') # 81 
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/4.txt') # 81 min
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/5.txt') # 88
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/6.txt') # 87
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/7.txt') # 90
@@ -320,47 +320,4 @@ def teste_arquivos(arq1, arq2):
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/20.txt')# 83
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/21.txt')# 88
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/22.txt')# 92
-teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/23.txt')# 
-
-
-
-
-
-
-# molde
-    # entidade1 = entity.Entidade('')
-    # entidade2 = entity.Entidade('')
-    # entidade3 = entity.Entidade('')
-    # entidade4 = entity.Entidade('')
-    # entidade5 = entity.Entidade('')
-    # entidade6 = entity.Entidade('')
-
-    # entidades1 = [entidade1, entidade2, entidade3, entidade4, entidade5, entidade6]
-
-    # ligacoes1 = []
-
-    # ligacoes1.append()
-    # ligacoes1.append()
-    # ligacoes1.append()
-    # ligacoes1.append()
-    # ligacoes1.append()
-    # ligacoes1.append()
-
-    # entidade1 = entity.Entidade('')
-    # entidade2 = entity.Entidade('')
-    # entidade3 = entity.Entidade('')
-    # entidade4 = entity.Entidade('')
-    # entidade5 = entity.Entidade('')
-    # entidade6 = entity.Entidade('')
-
-    # entidades2 = [entidade1, entidade2, entidade3, entidade4, entidade5, entidade6]
-
-    # ligacoes2 = []
-
-    # ligacoes2.append()
-    # ligacoes2.append()
-    # ligacoes2.append()
-    # ligacoes2.append()
-    # ligacoes2.append()
-    # ligacoes2.append()
-    # test_any_exemple(entidades1, ligacoes1, entidades2, ligacoes2)
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/23.txt')# 

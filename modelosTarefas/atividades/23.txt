@@ -1,9 +1,0 @@
-entity(usuario, key nome-completo, email, pais)
-entity(video, titulo, key codigo, categoria)
-entity(ator, key ator, nome, nascimento)
-entity(maquina, key ip)
-entity(execucao, qualidade)
-
-
-relation(usuario-video, usuario [1:n], video [1:n])
-relation(maquina-video, maquina [1:])
