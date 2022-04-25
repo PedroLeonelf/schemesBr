@@ -1,13 +1,14 @@
 #key cpf [1:1]
 #nome
 #telefones [1:N]
+# teste
 class Atributo:
     def __init__(self, parametros):
         parametros = parametros.split(' ')
         self.avaliaKey(parametros)
         self.defineNome(parametros)
         self.defineCardinalidade(parametros)
-    
+
     def avaliaKey(self, parametros):
         if parametros[0] == 'key':
             self.key = True
