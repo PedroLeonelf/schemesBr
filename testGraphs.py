@@ -223,8 +223,8 @@ def teste_artigo(): # 74
 
     ligacoes1 = []
 
-    ligacoes1.append(['Comprador', 'Compra', '1:1', '1:N'])
-    ligacoes1.append(['Compra', 'Item', '1:1', '1:N'])
+    ligacoes1.append(['Comprador', 'Compra', '1:1', '0:N'])
+    ligacoes1.append(['Compra', 'Item', '1:1', '0:N'])
 
 
 

@@ -4,10 +4,11 @@
 # teste
 class Atributo:
     def __init__(self, parametros):
-        parametros = parametros.split(' ')
+        parametros = parametros.strip().split(' ')
         self.avaliaKey(parametros)
         self.defineNome(parametros)
         self.defineCardinalidade(parametros)
+        
 
     def avaliaKey(self, parametros):
         if parametros[0] == 'key':

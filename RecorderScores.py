@@ -8,6 +8,7 @@ class recordScores:
         self.MaxValueComparator = 0.6
         self.MediumValueComparator = 0.3
         self.MinValueComparator = 0.1
+
     
     def __str__(self) -> str:
         return f"{self.entidade1} --> {self.entidade2}, scoreName:{self.scoreName}, scoreAttribute:{self.scoreAttributes}, scoreNodes:{self.scoreNode}"
@@ -71,20 +72,21 @@ class ScoreRecords:
                 self.records.remove(record)
     
     def matchScores(self): #part3
+        self.printAllRecords()
         repetitiveScores = self.getRepeteadRecords()
         for repetiveScore in repetitiveScores:
             self.excludeNonBiggerScores(self.getBiggerScore(self.getAllRecords(repetiveScore)))
     
 
     def printAllRecords(self):
-        for record in self.records:
-            print(record)
+        for rec in self.records:
+            print(f'Nome1:{rec.entidade1} Nome2:{rec.entidade2} scoreName:{rec.scoreName} scoreAttrb{rec.scoreAttributes} scoreNode{rec.scoreNode} finalScore:{rec.getAvg()}')
+
 
 
     def getAvgScores(self):
         vect = []
         for rec in self.records:
-            print(f'Nome1:{rec.entidade1} Nome2:{rec.entidade2} scoreName:{rec.scoreName} scoreAttrb{rec.scoreAttributes} scoreNode{rec.scoreNode}')
             vect.append(rec.getAvg())
         return vect
                 

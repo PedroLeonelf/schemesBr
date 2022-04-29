@@ -215,14 +215,30 @@ class Parser:
     
 
     def defineAtributacao(self, argumentos):
-        self.validaRelacionamento(argumentos)
-        self.validaAtributos(argumentos)
-        self.enviaAtributacao(argumentos)
+        if self.isRelation(argumentos):
+            self.validaRelacionamento(argumentos)
+            self.validaAtributos(argumentos)
+            self.enviaAtributacaoRelacional(argumentos)
+        else:
+            self.validaAtributos(argumentos)
+            self.enviaAtributacaoEntidade(argumentos)
+    
+    def isRelation(self, argumentos):
+        if argumentos == '':
+            self.levantaErro(f"Empty attribute in {self.linhaAtual}")
+        nome = argumentos.split(',')[0]
+        nome = nome[0].upper() + nome[1:].lower()
+        for relation in self.modelo.getRelacionamentos():
+            if relation.getNome() == nome:
+                return True
+        for entity in self.modelo.getEntidades():
+            if entity.getNome() == nome:
+                return False
+        self.levantaErro(f'Entity/Relation not defined in {self.linhaAtual}')
+
 
     
     def validaRelacionamento(self, argumentos):
-        if argumentos == '':
-            self.levantaErro(f"Empty attribute in {self.linhaAtual}")
         nomeRelacionamento = argumentos.split(',')[0]
         nomeRelacionamento = nomeRelacionamento[0].upper() + nomeRelacionamento[1:].lower()
         for relacionamento in self.modelo.getRelacionamentos():
@@ -251,12 +267,21 @@ class Parser:
 
         
 
-    def enviaAtributacao(self, argumentos):
+    def enviaAtributacaoRelacional(self, argumentos):
         relacionamentoAtual = argumentos.split(',')[0]
         relacionamentoAtual = relacionamentoAtual[0].upper() + relacionamentoAtual[1:].lower()
         for relacionamento in self.modelo.getRelacionamentos():
             if relacionamento.getNome() == relacionamentoAtual:
                 relacionamento.setAtributos(argumentos.split(',')[1:])
+    
+
+    def enviaAtributacaoEntidade(self, argumentos):
+        entidadeReferida = argumentos.split(',')[0]
+        entidadeReferida = entidadeReferida[0].upper() + entidadeReferida[1:].lower()
+        for entidade in self.modelo.getEntidades():
+            if entidade.getNome() == entidadeReferida:
+                entidade.setAtributos(argumentos.split(',')[1:])
+                
             
             
 # parser = Parser(['entity(cliente, key cpf [1:1] , nome [1:1], a)', 'Entity(Produto, key id [1:N], nome, valor)', 'Relation(Compra, cliente [1:N], Produto [1:N])'])

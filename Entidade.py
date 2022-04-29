@@ -15,8 +15,11 @@ class Entidade:
     def getNome(self):
         return self.nomeEntidade
     
-    def setAtributo(self, atributo):
-        self.atributos.append(atribute.Atributo(atributo))
+    def setAtributos(self, atributos):
+        
+        for atributo in atributos:
+            
+            self.atributos.append(atribute.Atributo(atributo))
 
     def __str__(self):
         return f'Entity:{self.nomeEntidade}'

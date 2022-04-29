@@ -78,29 +78,3 @@ class Visuazador:
     def getWindow(self):
         return sg.Window(title="Vizualizer" ,layout = self.display_image_window("content/text_file.png"), modal=True, element_padding=(0,0), resizable=False, finalize=True)
     
-
-
-
-    
-
-
-
-# def main():
-
-
-#     while True:
-#         event, values = window.read()
-#         if event == sg.WIN_CLOSED:
-#             break
-#         if event == "Save":
-#            save_image(values)
-
-
-
-
-
-
-
-
-# if __name__ == '__main__':
-#     main()
