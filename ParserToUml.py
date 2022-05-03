@@ -8,6 +8,7 @@ class ParserToUml:
         self.model = modelo
         self.inicializateArchive()
         self.fileLocation = "content/text_file.txt"
+        self.fixNonAlphaNumeric()
         self.translateToUml()
         self.writeUmlText()
     
@@ -30,13 +31,22 @@ class ParserToUml:
             for linha in self.text:
                 file.write(f"{linha}\n")
             file.write("@enduml")
+    
+    def fixNonAlphaNumeric(self):
+        for entidade, relacionamento in zip(self.model.getEntidades(), self.model.getRelacionamentos()):
+            if '-' in entidade.getNome():
+                entidade.setNome(entidade.getNome().replace('-', '_'))
+            if '-' in relacionamento.getNome():
+                relacionamento.setNome(relacionamento.getNome().replace('-', '_')) 
+                
+
 
     def translateEntities(self, entities):
         for entity in entities:
             self.text.append(f"Entity {entity.getNome()}" + '{')
             self.translateAtributes(entity.getAtributos())
             self.text.append("}")
-        
+    
         
     
 
@@ -85,23 +95,23 @@ class ParserToUml:
 
     def getCardinalityArrow(self, cardinality):
         if cardinality == '[0:1]':
-            return '|o--'
+            return '|o-'
         elif cardinality == '[1:1]':
-            return '||--'
+            return '||-'
         elif cardinality == '[0:N]':
-            return '}o--'    
+            return '}o-'    
         elif cardinality == '[1:N]':
-            return '}|--'
+            return '}|-'
     
     def getInversedCardinalityArrow(self, cardinality):
         if cardinality == '[0:1]':
-            return '|o--'[::-1]
+            return '|o-'[::-1]
         elif cardinality == '[1:1]':
-            return '||--'[::-1]
+            return '||-'[::-1]
         elif cardinality == '[0:N]':
-            return '--o{'    
+            return '-o{'    
         elif cardinality == '[1:N]':
-            return '--|{'
+            return '-|{'
 
 
 

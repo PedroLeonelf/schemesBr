@@ -27,7 +27,7 @@ class Parser:
 
 
     def traduzLinha(self, linha):
-        if linha == '\n':
+        if linha.strip() == '\n':
             return
         linha = linha.strip()
         self.linhaAtual = linha
@@ -37,6 +37,8 @@ class Parser:
             self.defineRelacionamento(linha[9:-1])
         elif linha[:10].lower() + linha[-1] == "attribute()":
             self.defineAtributacao(linha[10:-1])
+        elif linha[:15].lower() + linha[-1] == "specialization()":#specialization(Pessoa, Funcionario, Cliente)
+            self.defineEspecializacao(linha[15:-1])
         else:
             self.levantaErro(f"Illegal character in line {self.numeroLinha}")
 
@@ -44,6 +46,7 @@ class Parser:
 
     def defineEntidade(self, linha):
         self.checaVazio(linha)
+        
         self.checaNome(linha, "Entity")
         self.checaKey(linha)
 
@@ -75,6 +78,7 @@ class Parser:
             self.levantaErro(f"{type} name can't have more than one word in {self.linhaAtual}, line {self.numeroLinha}")
         elif self.nomeNaoUnico(nome):
             self.levantaErro(f"{type} name {nome} is duplicated.")
+        
     
 
     def nomeNaoUnico(self, nome):
@@ -215,7 +219,8 @@ class Parser:
     
 
     def defineAtributacao(self, argumentos):
-        if self.isRelation(argumentos):
+        if len(argumentos.split(',')) < 2 : self.levantaErro(f"Few arguments in specialization in {self.linhaAtual}") 
+        if self.isRelation(argumentos): 
             self.validaRelacionamento(argumentos)
             self.validaAtributos(argumentos)
             self.enviaAtributacaoRelacional(argumentos)
@@ -281,13 +286,35 @@ class Parser:
         for entidade in self.modelo.getEntidades():
             if entidade.getNome() == entidadeReferida:
                 entidade.setAtributos(argumentos.split(',')[1:])
+    
+
+    def defineEspecializacao(self, argumentos):
+        split = argumentos.split(',')
+        if len(split) < 2 : self.levantaErro(f"Few arguments in {self.linhaAtual}")
+        self.checaNomeValido(split[0])
+        self.checaNomesEspecializacao(split[1:], split[0])
+        self.adicionaEspecializacao(split[0], split[1:])
+
+    def checaNomeValido(self, nome):
+        for entidade in self.modelo.getEntidades():
+            if entidade.getNome() == nome:
+                return
+        self.levantaErro(f"Undefined entity name in {self.linhaAtual}")
+
+    def checaNomesEspecializacao(self, nomes, entity):
+        entity = self.modelo.getEntidadePorNome(entity)
+        for nome in nomes:
+            if nome == entity.getNome():
+                self.levantaErro(f"Entity and specialization can't have the same name in {self.linhaAtual}.")
+            if entity.getSpecialization() == nome : self.levantaErro(f"The specialization {nome} in {self.linhaAtual} is duplicated.")
+    
+    def adicionaEspecializacao(self, nomeEntidade, nomesEspecializados):
+        entidade = self.modelo.getEntidadePorNome(nomeEntidade)
+        for nome in nomesEspecializados:
+            entidade.setSpecialization(nome)
+        
+                
+
                 
             
             
-# parser = Parser(['entity(cliente, key cpf [1:1] , nome [1:1], a)', 'Entity(Produto, key id [1:N], nome, valor)', 'Relation(Compra, cliente [1:N], Produto [1:N])'])
-# parser.traduzLinhas()
-
-# for entidade in parser.modelo.getEntidades():
-#     print(entidade.getNome())
-# for relacionamento in parser.modelo.getRelacionamentos():
-#     print(relacionamento.getNome())

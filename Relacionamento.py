@@ -35,6 +35,9 @@ class Relation:
         for atr in atributos:
             self.atributos.append(Atributo.Atributo(atr.strip()))
     
+    def setNome(self, nome):
+        self.nome = nome
+    
     def getAtributos(self):
         return self.atributos
 

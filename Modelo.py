@@ -10,6 +10,11 @@ class Modelo:
     def getEntidades(self):
         return self.listaEntidades
     
+    def getEntidadePorNome(self, nome):
+        for entidade in self.listaEntidades:
+            if entidade.getNome() == nome:
+                return entidade
+    
     def adicionaRelacionamento(self, relacionamento):
         self.listaRelacionamentos.append(relacionamento)
     
