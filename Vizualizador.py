@@ -11,7 +11,7 @@ class Visuazador:
         self.THUMBNAIL_PAD = (1,1)
         self.ROOT_FOLDER = r'content/'
         self.screen_size = sg.Window.get_screen_size()
-        self.IMAGE_SIZE = (self.THUMBNAIL_SIZE[0],self.THUMBNAIL_SIZE[1])
+        self.IMAGE_SIZE = (self.THUMBNAIL_SIZE[0]+500,self.THUMBNAIL_SIZE[1]+300)
         self.file_types = [("PNG (*.png)", "*.png"), ("All files (*.*)", "*.*")]
         self.tmp_file = "content/text_file.png"
         
