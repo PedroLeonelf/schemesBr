@@ -15,6 +15,7 @@ class ParserToUml:
     def inicializateArchive(self):
         myfile = Path('content/text_file.txt')
         myfile.touch(exist_ok=True)
+
         f = open(myfile)
         f.close()
 
@@ -112,7 +113,6 @@ class ParserToUml:
             return '-o{'    
         elif cardinality == '[1:N]':
             return '-|{'
-
 
 
 

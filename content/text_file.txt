@@ -1,11 +1,4 @@
 @startuml
 Entity Pessoa{
-- cpf
 }
-Entity Mercado{
-}
-package Pessoa_mercado <<Cloud>> {
-}
-Pessoa }|-> Pessoa_mercado : [1:N]
-Pessoa_mercado <-|| Mercado : [1:1]
 @enduml
