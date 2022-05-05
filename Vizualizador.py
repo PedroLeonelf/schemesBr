@@ -11,7 +11,7 @@ class Visuazador:
         self.THUMBNAIL_PAD = (1,1)
         self.ROOT_FOLDER = r'content/'
         self.screen_size = sg.Window.get_screen_size()
-        self.IMAGE_SIZE = (self.THUMBNAIL_SIZE[0]+500,self.THUMBNAIL_SIZE[1]+300)
+        self.IMAGE_SIZE = (self.THUMBNAIL_SIZE[0]+700,self.THUMBNAIL_SIZE[1]+500)
         self.file_types = [("PNG (*.png)", "*.png"), ("All files (*.*)", "*.*")]
         self.tmp_file = "content/text_file.png"
         
@@ -76,5 +76,5 @@ class Visuazador:
 
 
     def getWindow(self):
-        return sg.Window(title="Vizualizer" ,layout = self.display_image_window("content/text_file.png"), modal=True, element_padding=(0,0), resizable=False, finalize=True)
+        return sg.Window(title="Vizualizer" ,layout = self.display_image_window("content/text_file.png"), modal=True, element_padding=(0,0), resizable=True, finalize=True)
     

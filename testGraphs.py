@@ -284,7 +284,7 @@ def getGrafo(modelo):
 def teste_arquivos(arq1, arq2):
     sim.graphSimiliarity(getGrafo(retorna_modelo(arq1)), getGrafo(retorna_modelo(arq2)))
 
-teste_artigo()
+# teste_artigo()
 
 # teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo1') # 100
 # teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo2') # 98
@@ -321,3 +321,5 @@ teste_artigo()
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/21.txt')# 88
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/22.txt')# 92
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/23.txt')# 
+
+teste_arquivos('textos/specialization1', 'textos/specialization2')

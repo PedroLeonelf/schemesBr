@@ -297,14 +297,14 @@ class Parser:
 
     def checaNomeValido(self, nome):
         for entidade in self.modelo.getEntidades():
-            if entidade.getNome() == nome:
+            if entidade.getNome().lower() == nome.lower():
                 return
         self.levantaErro(f"Undefined entity name in {self.linhaAtual}")
 
     def checaNomesEspecializacao(self, nomes, entity):
         entity = self.modelo.getEntidadePorNome(entity)
         for nome in nomes:
-            if nome == entity.getNome():
+            if nome.lower() == entity.getNome().lower():
                 self.levantaErro(f"Entity and specialization can't have the same name in {self.linhaAtual}.")
             if entity.getSpecialization() == nome : self.levantaErro(f"The specialization {nome} in {self.linhaAtual} is duplicated.")
     
@@ -312,6 +312,9 @@ class Parser:
         entidade = self.modelo.getEntidadePorNome(nomeEntidade)
         for nome in nomesEspecializados:
             entidade.setSpecialization(nome)
+        for entidade in self.modelo.getEntidades():
+            print(entidade.getSpecialization()[0])
+        
         
                 
 

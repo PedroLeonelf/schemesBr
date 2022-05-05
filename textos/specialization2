@@ -1,0 +1,2 @@
+entity(algo)
+specialization(algo, Funcionario, Gerente)

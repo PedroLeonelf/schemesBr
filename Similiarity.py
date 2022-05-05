@@ -112,12 +112,41 @@ def presentInSinonymList(string, list):
 def entitySimiliarity(entity1, entity2): #first part 
     scoreList, scoreName, scoreAttributes = [entity1, entity2], 0, 0
     name1, name2 = entity1.getNome().lower().strip(), entity2.getNome().lower().strip()
-    scoreName = mainComparatorStrings(name1, name2)
+    scoreName = nameSimilarity(name1, name2, entity1, entity2)
     scoreAttributes += AttributesSimiliarity(entity1, entity2)
     scoreList.append(round(scoreName,2))
     scoreList.append(round(scoreAttributes,2))
     scoreList.append(round((scoreName+scoreAttributes)/2,2)) 
     return scoreList
+
+def nameSimilarity(name1, name2, entity1, entity2):
+    bigger = 0
+    if entity1.getSpecialization() == [] and entity2.getSpecialization() == []:
+        return mainComparatorStrings(name1, name2)
+    elif entity1.getSpecialization() != [] and entity1.getSpecialization() != []:
+        return max(getBiggerScoreFromSpecializations(entity1, entity2), getBiggerScoreFromName(entity1, name2), getBiggerScoreFromName(entity2, name1))
+    elif entity1.getSpecialization() != []:
+        return getBiggerScoreFromName(entity1, name2)
+    elif entity2.getSpecialization() != []:
+        return getBiggerScoreFromName(entity2, name1)
+
+def getBiggerScoreFromSpecializations(entity1, entity2):
+    bigger = 0
+    for specialization1 in entity1.getSpecialization():
+        for specialization2 in entity2.getSpecialization():
+            actual = mainComparatorStrings(specialization1, specialization2)
+            bigger = actual if actual > bigger else bigger
+    return bigger
+
+def getBiggerScoreFromName(entity, name):
+    bigger = 0
+    for specialization in entity.getSpecialization():
+        actual = mainComparatorStrings(specialization, name)
+        bigger = actual if actual > bigger else bigger
+    return bigger
+
+
+
 
 def AttributesSimiliarity(entity1, entity2):
     score = 0

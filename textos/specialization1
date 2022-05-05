@@ -1,0 +1,2 @@
+entity(Pessoa)
+specialization(Pessoa, Funcionario, Gerente)

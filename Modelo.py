@@ -12,7 +12,7 @@ class Modelo:
     
     def getEntidadePorNome(self, nome):
         for entidade in self.listaEntidades:
-            if entidade.getNome() == nome:
+            if entidade.getNome().lower() == nome.lower():
                 return entidade
     
     def adicionaRelacionamento(self, relacionamento):

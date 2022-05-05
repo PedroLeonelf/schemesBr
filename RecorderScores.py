@@ -22,13 +22,16 @@ class recordScores:
     def getMaxMediumMinScores(self):
         Max = max(self.scoreName, self.scoreAttributes, self.scoreNode)
         Min = min(self.scoreName, self.scoreAttributes, self.scoreNode)
-        Med = None
-        vet = [Max, Med, Min]
-        Med = self.scoreName if self.scoreName not in vet else None
-        Med = self.scoreAttributes if self.scoreAttributes not in vet else self.scoreNode
+        Med = self.defineMedium([Max, Min])
         return Max,Med,Min
 
-
+    def defineMedium(self, vet):
+        if self.scoreName >= vet[0] and self.scoreName <= vet[1]:
+            return self.scoreName
+        elif self.scoreNode >= vet[0] and self.scoreNode <= vet[1]:
+            return self.scoreNode
+        else:
+            return self.scoreAttributes
 
 
 
