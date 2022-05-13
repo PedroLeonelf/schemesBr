@@ -121,14 +121,15 @@ def entitySimiliarity(entity1, entity2): #first part
 
 def nameSimilarity(name1, name2, entity1, entity2):
     bigger = 0
+    entityNamesSim = mainComparatorStrings(name1, name2)
     if entity1.getSpecialization() == [] and entity2.getSpecialization() == []:
-        return mainComparatorStrings(name1, name2)
+        return entityNamesSim
     elif entity1.getSpecialization() != [] and entity1.getSpecialization() != []:
-        return max(getBiggerScoreFromSpecializations(entity1, entity2), getBiggerScoreFromName(entity1, name2), getBiggerScoreFromName(entity2, name1))
+        return max(getBiggerScoreFromSpecializations(entity1, entity2), getBiggerScoreFromName(entity1, name2), getBiggerScoreFromName(entity2, name1), entityNamesSim)
     elif entity1.getSpecialization() != []:
-        return getBiggerScoreFromName(entity1, name2)
+        return max(getBiggerScoreFromName(entity1, name2), entityNamesSim)
     elif entity2.getSpecialization() != []:
-        return getBiggerScoreFromName(entity2, name1)
+        return max(getBiggerScoreFromName(entity2, name1), entityNamesSim)
 
 def getBiggerScoreFromSpecializations(entity1, entity2):
     bigger = 0

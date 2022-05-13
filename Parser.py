@@ -8,18 +8,20 @@ class Parser:
         return self.modelo
     
     def setLinhas(self, linhas):
+        
         self.linhas = linhas
 
     
     def traduzLinhas(self):
         self.numeroLinha = 1
         self.modelo = model.Modelo()
+        # print(f"Linhas:{self.linhas}")
         for linha in self.linhas:
             print(linha)
             try:
-                self.traduzLinha(linha)
+                if linha.strip(' ') != '\n' : self.traduzLinha(linha)
             except Exception as e: 
-                print(e)
+                print(f"{e} in line {linha}")
                 self.modelo = None
                 return
             self.numeroLinha+=1
@@ -27,8 +29,6 @@ class Parser:
 
 
     def traduzLinha(self, linha):
-        if linha.strip() == '\n':
-            return
         linha = linha.strip()
         self.linhaAtual = linha
         if linha[:7].lower() + linha[-1] ==  "entity()":
@@ -312,8 +312,8 @@ class Parser:
         entidade = self.modelo.getEntidadePorNome(nomeEntidade)
         for nome in nomesEspecializados:
             entidade.setSpecialization(nome)
-        for entidade in self.modelo.getEntidades():
-            print(entidade.getSpecialization()[0])
+ 
+
         
         
                 
