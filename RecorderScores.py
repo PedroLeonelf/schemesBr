@@ -20,18 +20,12 @@ class recordScores:
         return round(self.MaxValueComparator * max + self.MediumValueComparator * med + self.MinValueComparator * min, 2)
     
     def getMaxMediumMinScores(self):
-        Max = max(self.scoreName, self.scoreAttributes, self.scoreNode)
-        Min = min(self.scoreName, self.scoreAttributes, self.scoreNode)
-        Med = self.defineMedium([Max, Min])
+        vect = [self.scoreName, self.scoreAttributes, self.scoreNode]
+        vect.sort(reverse=True)
+        Max, Med, Min = vect
+        print(f"Vect:{[self.scoreName, self.scoreAttributes, self.scoreNode]}")
+        print(f"Max {Max} Med {Med} Min {Min} ")
         return Max,Med,Min
-
-    def defineMedium(self, vet):
-        if self.scoreName >= vet[0] and self.scoreName <= vet[1]:
-            return self.scoreName
-        elif self.scoreNode >= vet[0] and self.scoreNode <= vet[1]:
-            return self.scoreNode
-        else:
-            return self.scoreAttributes
 
 
 
