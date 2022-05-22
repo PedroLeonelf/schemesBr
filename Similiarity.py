@@ -15,6 +15,8 @@ entityNodeScore = 0.8
 synonymScore = 0.7
 attributeSimiliarity = True
 english_text = False
+utilizeSynonym = False
+
 
 def average(vector, lenSize):
     if vector == []:
@@ -59,7 +61,8 @@ def mainComparatorStrings(string1, string2, sinList = []):
         isSimiliarityRate = lcs_init(string1, string2)
         if isSimiliarityRate > 0.8:
             return isSimiliarityRate
-        isSinonymRate = isSinonym(string1, string2) if not english_text else is_sinonym_english(string1,string2)  
+        if utilizeSynonym:
+            isSinonymRate = isSinonym(string1, string2) if not english_text else is_sinonym_english(string1,string2)  
         maximo = max(isSimiliarityRate, isSinonymRate)
     else:
         maximo = max(presentInSinonymList(string1, sinList), lcs_init(string1,string2))
@@ -161,7 +164,7 @@ def checkAttributeSimiliarity(attribute, attributes):
     firstAttribute = attributes[0].getNome().lower()
     if attribute == 'none' and firstAttribute != 'none' or firstAttribute == 'none' and attribute != 'none':
         return 0
-    sinList = Search(attribute).synonyms()
+    sinList = Search(attribute).synonyms() if utilizeSynonym else []
     for attr in attributes:
         vector.append(mainComparatorStrings(attr.getNome().lower().strip(), attribute, sinList))
     return max(vector)

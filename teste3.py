@@ -4,6 +4,7 @@ from pysinonimos.sinonimos import Search
 import time
 
 
+
 def mainComparatorStrings(string1, string2, sinList = []):
     print(f"{string1} == {string2}")
     if sinList == []:

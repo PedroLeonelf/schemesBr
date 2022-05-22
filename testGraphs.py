@@ -303,7 +303,7 @@ def teste_arquivos(arq1, arq2):
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/1.txt') # 88  *85
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/2.txt') # 93
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/3.txt') # 87
-teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/4.txt') # 81 min *79
+# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/4.txt') # 81 min *79
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/5.txt') # 88
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/6.txt') # 87
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/7.txt') # 90
@@ -314,7 +314,7 @@ teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/ativida
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/12.txt')# 86
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/13.txt')# 90
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/14.txt')# 90   *84
-# teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/15.txt')# 98 max *94
+teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/15.txt')# 98 max
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/16.txt')# 88
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/17.txt')# 88
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/18.txt')# 88
