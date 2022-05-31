@@ -3,16 +3,32 @@ from turtle import position
 from typing import Dict
 import xml.etree.ElementTree as ET
 
+from attr import attributes
+
 
 class xmlToCode:
     def __init__(self) -> None:
         tree = ET.parse('xml/xmlteste.xml')
         self.root = tree.getroot()
+        self.fileName = 'xml/translatedText.txt'
         self.entities = []
         self.relationships = []
         self.attributes = []
         self.connections = []
         self.cardinalities = []
+        self.initializeGets()
+    
+    def initializeGets(self) -> None:
+        self.getentities()
+        self.getRelationships()
+        self.getAttributes()
+        self.getConnections()
+        self.linkEntities()
+        self.linkRelationships()
+        self.getConnections()
+        self.getCardinalities()
+        self.linkCardinalities()
+        self.translate()
 
     # nomes das entidades
     def getentities(self) -> None:
@@ -25,7 +41,7 @@ class xmlToCode:
     def getRelationships(self) -> None:
         for relationship in self.root.iter('Relacionamento'):
             for item in relationship.iter('Texto'):
-                self.relationships.append({'Name' : item.text.replace(' ', '_'), 'id' : relationship.attrib['ID'], 'entities' : []})
+                self.relationships.append({'Name' : item.text.replace(' ', '_'), 'id' : relationship.attrib['ID'], 'entities' : [], 'cardinalities' : []})
 
     # atributos valor e identificador 
     def getAttributes(self) -> None:
@@ -121,6 +137,55 @@ class xmlToCode:
         for item in self.relationships:
             if item['Name'] == relationship:
                 item['entities'].append(entity)
+    
+    def linkCardinalities(self) -> None:
+        minorDiff = 0
+        entityLink = self.entities[0]
+        for cardinality in self.cardinalities:
+            for entity in self.entities:
+                diff = self.getDiffPosition(cardinality, entity)
+                if diff < minorDiff: 
+                    minorDiff = diff
+                    entityLink = entity
+            self.defineCardinalityInRelationship(entityLink, cardinality)
+    
+    def defineCardinalityInRelationship(self, entity, cardinality) -> None:
+        for relationship in self.relationships:
+            if entity['Name'] in relationship['entities']  and len(relationship['cardinalities']) < 2:
+                relationship['cardinalities'].append(cardinality['value'])
+                return
+    
+
+    def getDiffPosition(self, cardinality, entity) -> int:
+        diff = abs(int(cardinality['position'][0]) - int(entity['position'][0])) + abs(int(cardinality['position'][1]) - int(entity['position'][1]))
+        return diff
+    
+    def translate(self) -> None:
+        with open(self.fileName, 'w') as file: None # cria ou esvazia o arquivo
+        for entity in self.entities:
+            self.translateEntity(entity)
+        # for relationship in self.relationships:
+        #     self.translateRelationship(relationship)
+    
+    def translateEntity(self, entity) -> None:
+        name = entity['Name']
+        if entity['attributes'] == []:
+            with open(self.fileName, 'a') as file:
+                file.write(f'entity({name})\n')
+        else:
+            attributes = self.parseAttributes(entity['attributes'])
+            with open(self.fileName, 'a') as file:
+                file.write(f'entity({name}, {attributes})\n')
+
+    def parseAttributes(self, attributes) -> str:
+        vect = ''
+        for attribute in attributes:
+            name = attribute['Name']
+            vect += f'key {name}' if attribute['key'] == 'true' else name
+            if attribute != attributes[-1]:
+                vect += ', '
+        return vect
+            
         
     def printEntities(self) -> None:
         for entity in self.entities:
@@ -141,15 +206,10 @@ class xmlToCode:
         
 
 
-obj = xmlToCode()
-obj.getentities()
-obj.getRelationships()
-obj.getAttributes()
-obj.getConnections()
-obj.linkEntities()
-obj.linkRelationships()
-obj.getConnections()
-obj.getCardinalities()
-obj.printCardinalities()
-obj.printEntities()
-obj.printRelationships()
+xml = xmlToCode()
+
+# xml.printCardinalities()
+# xml.printEntities()
+# xml.printCardinalities()
+
+# xml.printRelationships()

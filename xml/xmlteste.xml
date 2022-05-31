@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="5E3A-C9-3070-A4-C1B6-9E-D6">
+<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="7445-91-AAC7-B2-6D29-7F-81">
     <InfoDiagrama ID="1">
         <Versao Valor="3.2.0"/>
         <Autores/>
@@ -116,7 +116,7 @@
         <Ancorado Valor="false"/>
         <DirecaoFromInspector Valor="0"/>
         <Autosize Valor="true"/>
-        <Identificador Valor="false"/>
+        <Identificador Valor="true"/>
         <Opcional Valor="false"/>
         <Multivalorado Valor="false"/>
         <CardMinFromString Valor="1"/>
@@ -136,10 +136,8 @@
         <Largura Valor="1"/>
         <Ligacoes PontaA="11" PontaB="2"/>
         <Pontos>
-            <Ponto Left="259" Top="210"/>
+            <Ponto Left="260" Top="210"/>
             <Ponto Left="250" Top="210"/>
-            <Ponto Left="250" Top="227"/>
-            <Ponto Left="250" Top="227"/>
             <Ponto Left="250" Top="236"/>
         </Pontos>
     </Ligacao>

@@ -1,0 +1,2 @@
+entity(primeira_entidade, key atributoTeste)
+entity(segunda_entidade)
