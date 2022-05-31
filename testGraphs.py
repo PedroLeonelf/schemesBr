@@ -325,3 +325,4 @@ teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/ativida
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/23.txt')# 
 
 # teste_arquivos('textos/specialization1', 'textos/specialization2')
+

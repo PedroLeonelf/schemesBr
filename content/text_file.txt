@@ -1,26 +1,18 @@
 @startuml
-Entity Usuario{
-- nome
-- sobrenome
-- pais
-- email
+Entity Pessoa{
 }
-Entity Video{
-- titulo
-- categoria
-- tipo
+Entity Contas{
++ num_da_conta
+--
 }
-Entity Ator{
-- nome-ficticio
-- nome-real
-- nascimento
+Entity Profissao{
 }
-package Usuario_video <<Cloud>> {
+package Possui <<Cloud>> {
 }
-Usuario }o-> Usuario_video : [0:N]
-Usuario_video <-o{ Video : [0:N]
-package Video_ator <<Cloud>> {
+Pessoa ||-> Possui : [1:1]
+Possui <-|{ Contas : [1:N]
+package Temprofissao <<Cloud>> {
 }
-Video }|-> Video_ator : [1:N]
-Video_ator <-o{ Ator : [0:N]
+Pessoa }|-> Temprofissao : [1:N]
+Temprofissao <-|| Profissao : [1:1]
 @enduml

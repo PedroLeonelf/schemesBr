@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="65A-9F-C9DC-23-A654-8D-10">
+<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="A0F4-A6-CCD-48-BAEF-8E-48">
     <InfoDiagrama ID="1">
         <Versao Valor="3.2.0"/>
         <Autores/>
@@ -189,5 +189,42 @@
             <MovimentacaoManual Valor="false"/>
             <Papel Valor=""/>
         </Cardinalidade>
+    </Ligacao>
+    <Atributo ID="15">
+        <Bounds Height="14" Left="242" Top="45" Width="99"/>
+        <DisablePainted Valor="false"/>
+        <Texto>num da conta</Texto>
+        <Observacao/>
+        <Dicionario/>
+        <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
+        <Ancorado Valor="false"/>
+        <DirecaoFromInspector Valor="0"/>
+        <Autosize Valor="true"/>
+        <Identificador Valor="true"/>
+        <Opcional Valor="false"/>
+        <Multivalorado Valor="false"/>
+        <CardMinFromString Valor="1"/>
+        <CardMaxFromString Valor="n"/>
+        <TipoAtributo Valor=""/>
+    </Atributo>
+    <Ligacao ID="16">
+        <DisablePainted Valor="false"/>
+        <Tag LinhaMestre="-1"/>
+        <Dashed Valor="false"/>
+        <Ancorado Valor="false"/>
+        <TemSetaPontaA Valor="false"/>
+        <TemSetaPontaB Valor="false"/>
+        <SetaAberta Valor="true"/>
+        <SetaLargura Valor="10"/>
+        <Inteligente Valor="true"/>
+        <Largura Valor="1"/>
+        <Ligacoes PontaA="15" PontaB="3"/>
+        <Pontos>
+            <Ponto Left="238" Top="49"/>
+            <Ponto Left="229" Top="49"/>
+            <Ponto Left="229" Top="66"/>
+            <Ponto Left="229" Top="66"/>
+            <Ponto Left="229" Top="75"/>
+        </Pontos>
     </Ligacao>
 </DIAGRAMA>

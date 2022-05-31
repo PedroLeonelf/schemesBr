@@ -1,2 +1,5 @@
-entity(primeira_entidade, key atributoTeste)
-entity(segunda_entidade)
+entity(Pessoa)
+entity(Contas, key num_da_conta)
+entity(Profissao)
+relation(possui, Pessoa [1:1], Contas [1:N])
+relation(temProfissao, Pessoa [1:N], Profissao [1:1])

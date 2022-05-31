@@ -8,7 +8,7 @@ from attr import attributes
 
 class xmlToCode:
     def __init__(self) -> None:
-        tree = ET.parse('xml/xmlteste.xml')
+        tree = ET.parse('xml/xmltest2.xml')
         self.root = tree.getroot()
         self.fileName = 'xml/translatedText.txt'
         self.entities = []
@@ -164,8 +164,8 @@ class xmlToCode:
         with open(self.fileName, 'w') as file: None # cria ou esvazia o arquivo
         for entity in self.entities:
             self.translateEntity(entity)
-        # for relationship in self.relationships:
-        #     self.translateRelationship(relationship)
+        for relationship in self.relationships:
+            self.translateRelationship(relationship)
     
     def translateEntity(self, entity) -> None:
         name = entity['Name']
@@ -176,6 +176,14 @@ class xmlToCode:
             attributes = self.parseAttributes(entity['attributes'])
             with open(self.fileName, 'a') as file:
                 file.write(f'entity({name}, {attributes})\n')
+    
+    def translateRelationship(self, relationship) -> None:
+        name = relationship['Name']
+        entitie1, entitie2 = relationship['entities'][0] , relationship['entities'][1]
+        cardinality1, cardinality2 = relationship['cardinalities'][0] , relationship['cardinalities'][1]
+        with open(self.fileName, 'a') as file:
+            file.write(f'relation({name}, {entitie1} [{cardinality1}], {entitie2} [{cardinality2}])\n')
+
 
     def parseAttributes(self, attributes) -> str:
         vect = ''
@@ -212,4 +220,4 @@ xml = xmlToCode()
 # xml.printEntities()
 # xml.printCardinalities()
 
-# xml.printRelationships()
+xml.printRelationships()
