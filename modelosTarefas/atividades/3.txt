@@ -1,6 +1,5 @@
 entity(usuario, nome, sobrenome, pais, conexao, key id-maquina)
 entity(video, nome, categoria)
 entity(ator, nome, data-nascimento)
-specialization(video, episodio, filme)
 relation(participa, video [0:n], ator [0:n])
 relation(busca, usuario [0:1], video [1:n])

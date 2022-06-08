@@ -219,5 +219,4 @@ xml = xmlToCode()
 # xml.printCardinalities()
 # xml.printEntities()
 # xml.printCardinalities()
-
-xml.printRelationships()
+# xml.printRelationships()

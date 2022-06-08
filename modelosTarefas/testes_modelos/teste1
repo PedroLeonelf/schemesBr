@@ -1,2 +1,0 @@
-entity(pessoa)
-attribute(pessoa, key cpf)

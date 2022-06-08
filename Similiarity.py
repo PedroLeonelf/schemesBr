@@ -55,17 +55,14 @@ def entitiesSimiliarity(graph1, graph2):
 
 #### string similiarity functions#################################################################
 
-def mainComparatorStrings(string1, string2, sinList = []):
+def mainComparatorStrings(string1, string2):
     print(f"{string1} == {string2}")
-    if sinList == []:
-        isSimiliarityRate = lcs_init(string1, string2)
-        if isSimiliarityRate > 0.8:
-            return isSimiliarityRate
-        if utilizeSynonym:
-            isSinonymRate = isSinonym(string1, string2) if not english_text else is_sinonym_english(string1,string2)  
-        maximo = max(isSimiliarityRate, isSinonymRate)
-    else:
-        maximo = max(presentInSinonymList(string1, sinList), lcs_init(string1,string2))
+
+    isSimiliarityRate = lcs_init(string1, string2)
+    if isSimiliarityRate > 0.8:
+        return isSimiliarityRate
+    sinonymRate = (isSinonym(string1, string2) if not english_text else is_sinonym_english(string1,string2)) if utilizeSynonym else 0  
+    maximo = max(isSimiliarityRate, sinonymRate)
     print(f"Valor maior:{maximo}\n")
 
     return maximo
@@ -164,9 +161,8 @@ def checkAttributeSimiliarity(attribute, attributes):
     firstAttribute = attributes[0].getNome().lower()
     if attribute == 'none' and firstAttribute != 'none' or firstAttribute == 'none' and attribute != 'none':
         return 0
-    sinList = Search(attribute).synonyms() if utilizeSynonym else []
     for attr in attributes:
-        vector.append(mainComparatorStrings(attr.getNome().lower().strip(), attribute, sinList))
+        vector.append(mainComparatorStrings(attr.getNome().lower().strip(), attribute))
     return max(vector)
 
 def checkNoAttribute(attribute, attributes):

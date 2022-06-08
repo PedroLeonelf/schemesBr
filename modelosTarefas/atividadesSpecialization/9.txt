@@ -1,0 +1,6 @@
+entity(ator, key codigo, nome, data-nascimento)
+entity(video, key codigo, titulo, categoria)
+entity(usuario, key email, nome-completo)
+specialization(video, filme, serie)
+relation(ator-video, ator [0:n], video [0:n])
+relation(execucao, video [0:n], usuario [0:n])

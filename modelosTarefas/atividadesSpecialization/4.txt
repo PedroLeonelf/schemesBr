@@ -1,0 +1,10 @@
+entity(usuario, key nome, pais, email)
+entity(video)
+entity(episodio, key titulo)
+entity(filme, key titulo, categoria)
+entity(estrela, key nome, nascimento)
+
+relation(video-usuario, usuario [0:n], video [0:n])
+relation(video-filme, filme [0:1], video [1:1])
+relation(video-estrela, video [0:n], estrela [0:n])
+relation(video-episodio, video [1:1], episodio [0:1])
