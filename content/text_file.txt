@@ -1,18 +1,25 @@
 @startuml
-Entity Pessoa{
-}
-Entity Contas{
-+ num_da_conta
+Entity Comprador{
++ ID
 --
+- CPF
+- Endereco
 }
-Entity Profissao{
+Entity Compra{
++ ID
+--
+- Data
+- Total
+}
+Entity Item{
++ ID
+--
+- Nome
+- Qtd
+- Preco
+}
+package Realiza <<Cloud>> {
 }
 package Possui <<Cloud>> {
 }
-Pessoa ||-> Possui : [1:1]
-Possui <-|{ Contas : [1:N]
-package Temprofissao <<Cloud>> {
-}
-Pessoa }|-> Temprofissao : [1:N]
-Temprofissao <-|| Profissao : [1:1]
 @enduml

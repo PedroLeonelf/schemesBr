@@ -71,7 +71,13 @@ class xmlToCode:
             return '1:N'
         elif value == '3':
             return '0:N'
+    
+
+    # especializações
+    
         
+    
+
 
     # conexoes
     def getConnections(self) -> None:

@@ -15,13 +15,10 @@ class Parser:
     def traduzLinhas(self):
         self.numeroLinha = 1
         self.modelo = model.Modelo()
-        # print(f"Linhas:{self.linhas}")
         for linha in self.linhas:
-            print(linha)
             try:
                 if linha.strip(' ') != '\n' : self.traduzLinha(linha)
             except Exception as e: 
-                print(f"{e} in line {linha}")
                 self.modelo = None
                 return
             self.numeroLinha+=1
@@ -139,7 +136,7 @@ class Parser:
     def checaArgumentoGrande(self, linha, type):
         for argumento in linha.split(','):
             palavras = argumento.strip().split(' ')
-            if (len(palavras) > 3 and type == "Entity") or (len(palavras) > 2 and type == "Relation"):
+            if (len(palavras) > 3 and type == "Entity") or (len(palavras) > 2 and type == "Relation" and palavras[0] != 'key'):
                 self.levantaErro(f"Too big entry in {argumento}, line {self.numeroLinha}")
     
 
@@ -160,35 +157,33 @@ class Parser:
     
 
 
-    def defineRelacionamento(self, argumentos):
+    def defineRelacionamento(self, argumentos) -> None:
         self.checaRelacionamentoVazio(argumentos)
         self.checaNome(argumentos, "Relation")
-
         self.checaArgumentoGrande(argumentos, "Relation")
         self.checaArgumentos(argumentos)
         self.checaEntidades(argumentos)
         self.modelo.adicionaRelacionamento(self.criaRelacionamento(argumentos))
     
 
-    def checaRelacionamentoVazio(self, argumentos):
+    def checaRelacionamentoVazio(self, argumentos) -> None:
         if argumentos == '':
             self.levantaErro(f"Relation is empty in line {self.numeroLinha}")
         self.checaArgumentoVazio(argumentos)
     
 
-    def checaEntidades(self, argumentos):
+    def checaEntidades(self, argumentos) -> None:
         vet = argumentos.split(',')[1:]
-
         for it in vet:
             palavras = it.strip().split(' ')
-            self.avaliaEntidade(palavras[0])
             if len(palavras) == 2:
-                self.avaliaCardinalidade(palavras[1])
-            elif len(palavras) < 2:
-                self.levantaErro(f"No cardinality in {palavras[0]} line: {self.linhaAtual}")
-            elif len(palavras) > 2:
-                self.levantaErro(f"Too many arguments in {palavras[0]} line: {self.linhaAtual}")
-            
+                self.avaliaEntidade(palavras[0])
+            elif len(palavras) == 3 and palavras[0] == 'key':
+                self.avaliaEntidade(palavras[1])
+            else:
+                self.levantaErro(f"Wrong number of arguments in {palavras}, line:{self.linhaAtual}")
+            self.avaliaCardinalidade(palavras[-1])
+    
             
               
     
@@ -261,7 +256,6 @@ class Parser:
         self.checaCardinalidade(argumentos)
         for argumento in argumentos.split(',')[1:]:
             if len(argumento.split(' ')) > 3 or len(argumento) == 0:
-                print(len(argumento), argumento)
                 self.levantaErro(f"Wrong entry in {argumento} line {self.linhaAtual}.")
             
 

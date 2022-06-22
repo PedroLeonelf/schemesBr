@@ -1,4 +1,4 @@
-#['Compra', 'Cliente [1:N]', 'Produto [1:N]')]
+#['Compra', 'key Cliente [1:N]', 'Produto [1:N]')]
 import Atributo
 class Relation:
     
@@ -9,7 +9,10 @@ class Relation:
         entidades_a_ser_relacionadas = argumentos[1:]
         for entidade in entidades_a_ser_relacionadas:
             parametros = entidade.split(' ')
-            self.entidadesRelacionadas.append(EntidadeRelacionada(parametros[0], parametros[1]))
+            if parametros == 2:
+                self.entidadesRelacionadas.append(EntidadeRelacionada(parametros[0], parametros[1]))
+            elif parametros == 3:
+                self.entidadesRelacionadas.append(EntidadeRelacionada(paramentros[1], parametros[2], True))
         self.checaMuitosParaMuitos()
         
     def getNome(self):
@@ -44,15 +47,19 @@ class Relation:
             
 
 class EntidadeRelacionada:
-    def __init__(self, nome, cardinalidade):
+    def __init__(self, nome, cardinalidade, key = False):
         self.nome = nome[0].upper() + nome[1:].lower()
         self.cardinalidade = cardinalidade
+        self.key = key
         
     def getNome(self):
         return self.nome
     
     def getCardinalidade(self):
         return self.cardinalidade
+    
+    def getKey(self):
+        return self.key
 
 
 relacionamento = Relation(['Compra', 'Cliente [1:1]', 'Produto [1:N]'])
