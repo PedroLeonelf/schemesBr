@@ -242,10 +242,8 @@ class Parser:
         nomeRelacionamento = argumentos.split(',')[0]
         nomeRelacionamento = nomeRelacionamento[0].upper() + nomeRelacionamento[1:].lower()
         for relacionamento in self.modelo.getRelacionamentos():
-            if relacionamento.getNome() == nomeRelacionamento and relacionamento.getMuitoParaMuitos():
+            if relacionamento.getNome() == nomeRelacionamento:
                 return
-            elif relacionamento.getNome() == nomeRelacionamento and not relacionamento.getMuitoParaMuitos():
-                self.levantaErro(f"The relation {argumentos.split(',')[0]} is not N:N --> N:N cardinality")
         self.levantaErro(f"The relation {argumentos.split(',')[0]} is not definied.")
 
     def validaAtributos(self, argumentos):
