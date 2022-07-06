@@ -12,7 +12,7 @@ class Relation:
             if parametros == 2:
                 self.entidadesRelacionadas.append(EntidadeRelacionada(parametros[0], parametros[1]))
             elif parametros == 3:
-                self.entidadesRelacionadas.append(EntidadeRelacionada(paramentros[1], parametros[2], True))
+                self.entidadesRelacionadas.append(EntidadeRelacionada(parametros[1], parametros[2], True))
         self.checaMuitosParaMuitos()
         
     def getNome(self):
