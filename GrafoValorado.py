@@ -76,15 +76,3 @@ class Grafo:
         for no in self.nodos:
             if no.getValor().getNome() == nomeEntidade:
                 return no
-
-
-
-
-g = Grafo()
-g.adiciona(1)
-g.adiciona(2)
-g.adiciona(3)
-g.adicionaAresta(1,2,'1:1','0:N')
-g.adicionaAresta(1,3,'0:1','0:N')
-   
-    
