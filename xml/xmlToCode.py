@@ -1,6 +1,3 @@
-from tokenize import String
-from turtle import position
-from typing import Dict
 import xml.etree.ElementTree as ET
 
 from attr import attributes
@@ -50,7 +47,7 @@ class xmlToCode:
                 self.attributes.append({'Name' : itemName.text.replace(' ', '_'), 'key' : itemKey.attrib['Valor'], 'id' : attrb.attrib['ID']})
 
     # pega os atributos pelo nome 
-    def getAttributeByName(self, name) -> Dict:
+    def getAttributeByName(self, name) -> dict:
         for attribute in self.attributes:
             if attribute['Name'] == name:
                 return attribute
