@@ -227,20 +227,21 @@ def checkEntitySimilarityNeighbor(entity1, entity2, scores):
             return max(score[2], score[3]) * entityNodeScore
 
 
-def relationsSimilarity(self, relations1, relations2) -> list:
+def relationsSimilarity(relations1, relations2) -> dict:
     simDict = {}
     for relation1 in relations1:
         for relation2 in relations2:
-            simDict[f'{relation1.getNome()} - {relation2.getNome()}'] = self.relationComparator(relation1, relation2)
-
-def relationComparator(self, relation1, relation2) -> float:
+            simDict[f'{relation1.getNome()} - {relation2.getNome()}'] = relationComparator(relation1, relation2)
+    return simDict
+    
+def relationComparator(relation1, relation2) -> float:
     nameSim = mainComparatorStrings(relation1.getNome().lower(), relation2.getNome().lower())
     if relation1.getAtributos() == [] or relation2.getAtributos() == []:
         return round(nameSim,2)
     attributeSim = relationAttributeSim(relation1, relation2)
     return average([nameSim, attributeSim], 2) # 50% name 50% attributes
 
-def relationAttributeSim(self, relation1, relation2) -> float:
+def relationAttributeSim(relation1, relation2) -> float:
     attributeListSim = []
     for attribute1 in relation1.getAtributos():
         for attribute2 in relation2.getAtributos():

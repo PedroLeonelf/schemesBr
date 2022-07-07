@@ -33,9 +33,10 @@ class Aresta:
         return self.valor
     
 class Grafo:
-    def __init__(self, primeiroNo = None):
+    def __init__(self, relacionamentos,primeiroNo = None):
         self.primeiroNo = primeiroNo
         self.nodos = []
+        self.relacionamentos = relacionamentos
     
 
     def adiciona(self, valor):
@@ -76,3 +77,6 @@ class Grafo:
         for no in self.nodos:
             if no.getValor().getNome() == nomeEntidade:
                 return no
+    
+    def getRelacionamentos(self):
+        return self.relacionamentos

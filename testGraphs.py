@@ -1,5 +1,4 @@
 
-import pytest
 import Similiarity as sim
 
 import Entidade as entity
@@ -272,15 +271,13 @@ def retorna_modelo(arquivo):
     return parser.getModelo()
 
 def getGrafo(modelo):
-    grafo = Grafo()
+    grafo = Grafo(modelo.getRelacionamentos())
     for entidade in modelo.getEntidades():
         if entidade.getAtributos() == []:
             entidade.setAtributo('None')
         grafo.adiciona(entidade)
     
     for relation in modelo.getRelacionamentos():
-        print(relation.getNome())
-        print(relation.getEntidadesRelacionadas())
         entidade1, entidade2 = relation.getEntidadesRelacionadas()
         grafo.adicionaAresta(entidade1.getNome(), entidade2.getNome(), entidade1.getCardinalidade(), entidade2.getCardinalidade())
     return grafo

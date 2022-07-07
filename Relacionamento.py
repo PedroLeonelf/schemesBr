@@ -3,15 +3,15 @@ import Atributo
 class Relation:
     
     def __init__(self, argumentos):
-        self.nome = argumentos[0][0].upper() + argumentos[0][1:].lower()
+        self.nome = argumentos[0].title()
         self.entidadesRelacionadas = []
         self.atributos = []
         entidades_a_ser_relacionadas = argumentos[1:]
         for entidade in entidades_a_ser_relacionadas:
             parametros = entidade.split(' ')
-            if parametros == 2:
+            if len(parametros) == 2:
                 self.entidadesRelacionadas.append(EntidadeRelacionada(parametros[0], parametros[1]))
-            elif parametros == 3:
+            elif len(parametros) == 3:
                 self.entidadesRelacionadas.append(EntidadeRelacionada(parametros[1], parametros[2], True))
         self.checaMuitosParaMuitos()
         
