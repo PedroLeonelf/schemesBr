@@ -1,5 +1,7 @@
 
 from difflib import SequenceMatcher
+from attr import attrib
+from pip import main
 from pysinonimos.sinonimos import Search
 import RecorderScores as RS
 from nltk.corpus import wordnet
@@ -121,7 +123,6 @@ def entitySimiliarity(entity1, entity2): #first part
     return scoreList
 
 def nameSimilarity(name1, name2, entity1, entity2):
-    bigger = 0
     entityNamesSim = mainComparatorStrings(name1, name2)
     if entity1.getSpecialization() == [] and entity2.getSpecialization() == []:
         return entityNamesSim
@@ -152,22 +153,22 @@ def getBiggerScoreFromName(entity, name):
 
 def AttributesSimiliarity(entity1, entity2):
     score = 0
+    if entity1.getAtributos()[0].getNome() == 'none' == entity2.getAtributos()[0].getNome(): return 1
     for attribute in entity1.getAtributos():
-        score += checkAttributeSimiliarity(attribute.getNome().lower().strip(), entity2.getAtributos())
+        score += checkAttributeSimiliarity(attribute.getNome().lower().strip(), entity2.getAtributos(), attribute.isIdentifier())
     score /= max(len(entity1.getAtributos()), len(entity2.getAtributos()))
     return score
 
-def checkAttributeSimiliarity(attribute, attributes):
+def checkAttributeSimiliarity(attribute, attributes, key):
     vector = []
     firstAttribute = attributes[0].getNome().lower()
     if attribute == 'none' and firstAttribute != 'none' or firstAttribute == 'none' and attribute != 'none':
         return 0
     for attr in attributes:
-        vector.append(mainComparatorStrings(attr.getNome().lower().strip(), attribute))
+        vector.append(mainComparatorStrings(attr.getNome().lower().strip(), attribute) * 0.8 + attr.isIdentifier() == key * 0.2)
     return max(vector)
 
-def checkNoAttribute(attribute, attributes):
-    return attribute == 'none' and attributes.getNome().lower() == 'none'
+
 
 
 
@@ -215,7 +216,6 @@ def checkNeighborSimiliarity(edges1, edges2, scores):
             print(f"edge1: {edge1.getValor()} edge2:{edge2.getValor()}")
             if edge1.getValor().lower()[2] == edge2.getValor().lower()[2]: #only max cardinality
                 score += cardinalityScore
-                
             score += checkEntitySimilarityNeighbor(edge1.getNodo().getValor(), edge2.getNodo().getValor(), scores)
             tmpvet.append([edge1.getNodo(), edge2.getNodo(), round(score,2)])
         scoreListNeighbor.append(getSimilarityMostBigger(tmpvet))
@@ -226,27 +226,39 @@ def checkEntitySimilarityNeighbor(entity1, entity2, scores):
         if score[0] == entity1 and score[1] == entity2:
             return max(score[2], score[3]) * entityNodeScore
 
-
-def relationsSimilarity(relations1, relations2) -> dict:
-    simDict = {}
+def relationsSimilarity(relations1, relations2):
+    dict = {}
     for relation1 in relations1:
-        for relation2 in relations2:
-            simDict[f'{relation1.getNome()} - {relation2.getNome()}'] = relationComparator(relation1, relation2)
-    return simDict
-    
-def relationComparator(relation1, relation2) -> float:
-    nameSim = mainComparatorStrings(relation1.getNome().lower(), relation2.getNome().lower())
-    if relation1.getAtributos() == [] or relation2.getAtributos() == []:
-        return round(nameSim,2)
-    attributeSim = relationAttributeSim(relation1, relation2)
-    return average([nameSim, attributeSim], 2) # 50% name 50% attributes
+        dict[f'{relation1.getNome()}'] = relationSimimilarity(relation1, relations2)
+    return dict
 
-def relationAttributeSim(relation1, relation2) -> float:
-    attributeListSim = []
-    for attribute1 in relation1.getAtributos():
-        for attribute2 in relation2.getAtributos():
-            attributeListSim.append(mainComparatorStrings(attribute1, attribute2))
-    return average(attributeListSim, len(attributeListSim))
+def relationSimimilarity(relation1, relations2) -> float:
+    vect = []
+    for relation in relations2:
+        vect.append(compareRelations(relation1, relation))
+    return max(vect)
+
+def compareRelations(relation1, relation2) -> float:
+    name1, name2 = relation1.getNome(), relation2.getNome()
+    nameSim = mainComparatorStrings(name1, name2)
+    if relation1.getAtributos() == []:
+        relation1.setAtributo('none')
+    if relation2.getAtributos() == []:
+        relation2.setAtributo('none')
+    attribt = AttributesSimiliarity(relation1, relation2)
+    cardinaliScore = checkCardinality(relation1, relation2)
+    # neighboorScore =
+    return (nameSim + attribt + cardinaliScore) / 3
+    
+def checkCardinality(relation1, relation2):
+    vect = []
+    for cardinality in relation1.getCardinalidades():
+        if cardinality in relation2.getCardinalidades():
+            vect.append(1)
+            continue
+        vect.append(0)
+    return sum(vect)/len(vect)
+
 
 
 

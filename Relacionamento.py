@@ -41,9 +41,17 @@ class Relation:
     def setNome(self, nome):
         self.nome = nome
     
+    def setAtributo(self, atributo):
+        self.atributos.append(Atributo.Atributo(atributo))
+    
     def getAtributos(self):
         return self.atributos
-
+    
+    def getCardinalidades(self):
+        vect = []
+        for entidade in self.entidadesRelacionadas:
+            vect.append(entidade.getCardinalidade())
+        return vect
             
 
 class EntidadeRelacionada:
