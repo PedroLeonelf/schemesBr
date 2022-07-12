@@ -1,7 +1,5 @@
 
 from difflib import SequenceMatcher
-from attr import attrib
-from pip import main
 from pysinonimos.sinonimos import Search
 import RecorderScores as RS
 from nltk.corpus import wordnet
@@ -236,19 +234,17 @@ def relationSimimilarity(relation1, relations2) -> float:
     vect = []
     for relation in relations2:
         vect.append(compareRelations(relation1, relation))
-    return max(vect)
+    return round(max(vect),2)
 
 def compareRelations(relation1, relation2) -> float:
     name1, name2 = relation1.getNome(), relation2.getNome()
     nameSim = mainComparatorStrings(name1, name2)
-    if relation1.getAtributos() == []:
-        relation1.setAtributo('none')
-    if relation2.getAtributos() == []:
-        relation2.setAtributo('none')
+    if relation1.getAtributos() == []: relation1.setAtributo('none')
+    if relation2.getAtributos() == []: relation2.setAtributo('none')
     attribt = AttributesSimiliarity(relation1, relation2)
     cardinaliScore = checkCardinality(relation1, relation2)
-    # neighboorScore =
-    return (nameSim + attribt + cardinaliScore) / 3
+    neighboorScore = checkNeighborScore(relation1, relation2)
+    return (nameSim + attribt + cardinaliScore + neighboorScore) / 4
     
 def checkCardinality(relation1, relation2):
     vect = []
@@ -260,6 +256,9 @@ def checkCardinality(relation1, relation2):
     return sum(vect)/len(vect)
 
 
+def checkNeighborScore(relation1, relation2):
+    
+    
 
 
 
