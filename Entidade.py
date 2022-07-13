@@ -6,6 +6,7 @@ class Entidade:
         self.nomeEntidade = parametros[0][0].upper() + parametros[0][1:].lower()
         self.atributos = []
         self.especializacao = []
+        self.relacionamentos = []
         atributosParametrizados = parametros[1:]
         for atributo in atributosParametrizados:
             self.atributos.append(atribute.Atributo(atributo))
@@ -26,6 +27,8 @@ class Entidade:
         for atributo in atributos:
             self.setAtributo(atributo)
     
+    def setRelacionamento(self, relacionamento):
+        self.relacionamentos.append(relacionamento)
 
     def getSpecialization(self):
         return self.especializacao
