@@ -1,5 +1,5 @@
 
-import Similiarity as sim
+import Similarity.Similiarity as sim
 
 import Entidade as entity
 
