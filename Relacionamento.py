@@ -62,7 +62,8 @@ class EntidadeRelacionada:
         return self.key
 
 
-relacionamento = Relation(['Compra', 'Cliente [1:1]', 'Produto [1:N]'])
+relacionamento = Relation(['Compra', 'key Cliente [1:1]', 'Produto [1:N]'])
+print(relacionamento.getEntidadesRelacionadas()[1].getKey())
 
 
 

@@ -12,7 +12,7 @@ nodeScore = 0.4
 cardinalityScore = 0.2
 entityNodeScore = 0.8
 #-----------------------
-synonymScore = 0.7
+synonymScore = 1
 attributeSimiliarity = True
 english_text = False
 utilizeSynonym = False
@@ -168,6 +168,8 @@ def checkAttributeSimiliarity(attribute, attributes):
 
 def checkNoAttribute(attribute, attributes):
     return attribute == 'none' and attributes.getNome().lower() == 'none'
+
+
 
 
 
