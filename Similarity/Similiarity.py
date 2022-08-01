@@ -3,6 +3,7 @@ from Similarity.RelationSim import *
 from Similarity.Utility import *
 from Similarity.EntitySim import *
 from Similarity.StructureSim import *
+from Similarity.finalCalc import defineFinalScore
 metaScore = 0.7
 #-----------------------
 entityScore = 0.6
@@ -16,23 +17,21 @@ attributeSimiliarity = True
 english_text = False
 utilizeSynonym = False
 
-
-
-
 import time
 
 
 
-def graphSimiliarity(modelo1, modelo2):
+def graphSimiliarity(modelo1, modelo2) -> float:
 
     inicio = time.time()
     
-    entitiesScores = entitiesSimiliarity(modelo1.getEntidades(), modelo2.getEntidades())
+    entitySimObj = EntitySim()
+    entitiesScores = entitySimObj.entitiesSimiliarity(modelo1.getEntidades(), modelo2.getEntidades())
     relationsScores = relationsSimilarity(modelo1.getRelacionamentos(), modelo2.getRelacionamentos(), entitiesScores)
-    print(f'StructureSim:{modelStructureSim(modelo1, modelo2, entitiesScores, relationsScores)}')
-    print(entitiesScores)
-    
-    
+    structureObj = Structure(modelo1, modelo2, entitiesScores, relationsScores)
+    structureScore = structureObj.getScores()
+    finalScore = defineFinalScore(entitySimObj.scoreName, entitySimObj.scoreAttributes, structureScore)
+    print(finalScore)
 
     # return average(finalScore, len(graph1.getNos())) * 100
     

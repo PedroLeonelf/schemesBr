@@ -22,6 +22,11 @@ class Modelo:
     def getRelacionamentos(self):
         return self.listaRelacionamentos
     
+    def getRelacionamentoPorNome(self, nome):
+        for relacionamento in self.listaRelacionamentos:
+            if relacionamento.getNome() == nome:
+                return relacionamento
+
     def getNomes(self):
         print("\nEntities:",end='')
         for entidade in self.listaEntidades:
