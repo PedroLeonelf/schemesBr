@@ -264,11 +264,18 @@ def teste_artigo(): # 74
 def retorna_modelo(arquivo):
     parser = Parser.Parser()
     with open(arquivo,'r+') as file:
-        
         parser.setLinhas(file.readlines())
     parser.traduzLinhas()
+    modelo = parser.getModelo()
+    entidadeSemAtributo(modelo)
     print(f"Arquivo:{arquivo} modelo:{parser.getModelo()}")
-    return parser.getModelo()
+    return modelo
+
+def entidadeSemAtributo(modelo):
+    for entidade in modelo.getEntidades():
+        if entidade.getAtributos() == []:
+            entidade.setAtributo('none')
+
 
 def getGrafo(modelo):
     grafo = Grafo(modelo.getRelacionamentos())
@@ -283,7 +290,7 @@ def getGrafo(modelo):
     return grafo
 
 def teste_arquivos(arq1, arq2):
-    return sim.graphSimiliarity(getGrafo(retorna_modelo(arq1)), getGrafo(retorna_modelo(arq2)))
+    return sim.graphSimiliarity(retorna_modelo(arq1), retorna_modelo(arq2))
 
 # teste_artigo()
 

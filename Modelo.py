@@ -17,6 +17,7 @@ class Modelo:
     
     def adicionaRelacionamento(self, relacionamento):
         self.listaRelacionamentos.append(relacionamento)
+
     
     def getRelacionamentos(self):
         return self.listaRelacionamentos

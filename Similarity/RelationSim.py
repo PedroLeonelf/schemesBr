@@ -1,17 +1,10 @@
-from Util import *
+from Similarity.Utility import *
 
-def relationsSimilarity(relations1, relations2, entitiesScores):
-    vect = []
-    for relation1 in relations1:
-        vect.append(relationSimilarity(relation1, relations2, entitiesScores))
-    print(vect)
-    return vect
-    
-
-def relationSimilarity(relation1, relations2, entitiesScore) -> dict:
+def relationsSimilarity(relations1, relations2, scores) -> dict:
     dict = {}
-    for relation in relations2:
-        dict[f'{relation1.getNome().lower()}-{relation.getNome().lower()}'] = (compareRelations(relation1, relation, entitiesScore))
+    for relation1 in relations1:
+        for relation2 in relations2:
+            dict[f'{relation1.getNome().lower()}-{relation2.getNome().lower()}'] = compareRelations(relation1, relation2, scores)
     return dict
 
 def compareRelations(relation1, relation2, entitiesScore) -> float:
@@ -22,9 +15,10 @@ def compareRelations(relation1, relation2, entitiesScore) -> float:
     attribt = AttributesSimiliarity(relation1, relation2)
     cardinaliScore = checkCardinality(relation1, relation2)
     neighboorScore = checkNeighborScore(relation1, relation2, entitiesScore)
-    return (nameSim + attribt + cardinaliScore + neighboorScore) / 4
+
+    return truncate((nameSim + attribt + cardinaliScore + neighboorScore) / 4)
     
-def checkCardinality(relation1, relation2):
+def checkCardinality(relation1, relation2) -> float:
     vect = []
     for cardinality in relation1.getCardinalidades():
         if cardinality in relation2.getCardinalidades():
@@ -43,8 +37,6 @@ def checkNeighborScore(relation1, relation2, scores) -> float:
 
 def neighboorsEntityScore(entity1, entities2, scores) -> float:
     vect = []
-    for entity in entities2:
-        for score in scores:
-            if score[0].getNome().lower() == entity1.getNome().lower() and score[1].getNome().lower() == entity.getNome().lower():
-                vect.append(max(score[2], score[3]))
+    for entity2 in entities2:
+        vect.append(scores[f'{entity1.getNome().lower()}-{entity2.getNome().lower()}'] * 0.8 + 0.2 * (entity1.getKey() == entity2.getKey()))
     return max(vect)

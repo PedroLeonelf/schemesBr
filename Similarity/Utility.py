@@ -71,9 +71,21 @@ def AttributesSimiliarity(entity1, entity2):
 
 def checkAttributeSimiliarity(attribute, attributes, key):
     vector = []
+    print(f'Attributes:{attributes}')
     firstAttribute = attributes[0].getNome().lower()
     if attribute == 'none' and firstAttribute != 'none' or firstAttribute == 'none' and attribute != 'none':
         return 0
     for attr in attributes:
         vector.append(mainComparatorStrings(attr.getNome().lower().strip(), attribute) * 0.8 + attr.isIdentifier() == key * 0.2)
     return max(vector)
+
+
+def truncate(number):
+    return round(number, 2)
+
+def average(vector, lenSize = None):
+    if vector == []:
+        return 0
+    if lenSize == None : lenSize = len(vector)
+
+    return round(sum(vector)/lenSize,2)

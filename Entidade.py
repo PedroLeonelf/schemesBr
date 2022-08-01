@@ -29,6 +29,9 @@ class Entidade:
     
     def setRelacionamento(self, relacionamento):
         self.relacionamentos.append(relacionamento)
+    
+    def getRelacionamentos(self):
+        return self.relacionamentos
 
     def getSpecialization(self):
         return self.especializacao

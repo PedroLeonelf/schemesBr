@@ -1,3 +1,4 @@
+from ast import arg
 import Modelo as model
 import Entidade as entity
 import Relacionamento as relation
@@ -164,6 +165,7 @@ class Parser:
         self.checaArgumentos(argumentos)
         self.checaEntidades(argumentos)
         self.modelo.adicionaRelacionamento(self.criaRelacionamento(argumentos))
+        self.adicionaRelacionamentoNaEntidade(self.modelo.getRelacionamentos()[-1])
     
 
     def checaRelacionamentoVazio(self, argumentos) -> None:
@@ -304,6 +306,18 @@ class Parser:
         entidade = self.modelo.getEntidadePorNome(nomeEntidade)
         for nome in nomesEspecializados:
             entidade.setSpecialization(nome)
+    
+
+    def adicionaRelacionamentoNaEntidade(self, relacionamento):
+        for entidadeNome in relacionamento.getEntidadesRelacionadas():
+
+            for entidade in self.modelo.getEntidades():
+                
+                if entidade.getNome() == entidadeNome.getNome():
+                     
+                    entidade.setRelacionamento(relacionamento.getNome())
+                    
+
  
 
         

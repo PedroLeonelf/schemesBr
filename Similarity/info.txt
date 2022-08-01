@@ -1,0 +1,7 @@
+primeira parte = similaridade de entidades
+max(name, attrib(80 nome 20 key))
+
+
+segunda parte = similaridade de relacionamento
+truncate((nameSim + attribt + cardinaliScore + neighboorScore) / 4)
+

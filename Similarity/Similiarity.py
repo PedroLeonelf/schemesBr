@@ -1,7 +1,8 @@
 
-import RecorderScores as RS
-from Util import *
-from RelationSim import *
+from Similarity.RelationSim import *
+from Similarity.Utility import *
+from Similarity.EntitySim import *
+from Similarity.StructureSim import *
 metaScore = 0.7
 #-----------------------
 entityScore = 0.6
@@ -16,39 +17,32 @@ english_text = False
 utilizeSynonym = False
 
 
-def average(vector, lenSize):
-    if vector == []:
-        return 0
-    return round(sum(vector)/lenSize,2)
+
 
 import time
 
 
 
-def graphSimiliarity(graph1, graph2):
+def graphSimiliarity(modelo1, modelo2):
 
     inicio = time.time()
+    
+    entitiesScores = entitiesSimiliarity(modelo1.getEntidades(), modelo2.getEntidades())
+    relationsScores = relationsSimilarity(modelo1.getRelacionamentos(), modelo2.getRelacionamentos(), entitiesScores)
+    print(f'StructureSim:{modelStructureSim(modelo1, modelo2, entitiesScores, relationsScores)}')
+    print(entitiesScores)
+    
+    
 
-    scores = entitiesSimiliarity(graph1, graph2) # first part
-    scoreList = []
-    for score in scores:
-        print(f'\n{score[0]} -- {score[1]} \nscoreName:{score[2]}\nscoreAttributes:{score[3]} \nAvgScore:{score[4]}' )
-        scoreList.append(RS.recordScores(score[0], score[1], score[2], score[3], nodesSimiliarity(graph1.getNo(score[0]), graph2.getNo(score[1]), scores)))# second part) 
-    finalScore = matchNodes(scoreList)
-    print(f'Final Medias:{finalScore}')
-    print(f"Graph similarity is {average(finalScore, len(graph1.getNos())) * 100}%")
-    fim = time.time()
-    print((fim - inicio)/60)
-    print(relationsSimilarity(graph1.getRelacionamentos(), graph2.getRelacionamentos(), scores))
-    return average(finalScore, len(graph1.getNos())) * 100
+    # return average(finalScore, len(graph1.getNos())) * 100
     
             
-def entitiesSimiliarity(graph1, graph2):
-    scores = []
-    for node1 in graph1.getNos():
-        for node2 in graph2.getNos():
-            scores.append(entitySimiliarity(node1.getValor(), node2.getValor()))
-    return scores
+# def entitiesSimiliarity(graph1, graph2):
+#     scores = []
+#     for node1 in graph1.getNos():
+#         for node2 in graph2.getNos():
+#             scores.append(entitySimiliarity(node1.getValor(), node2.getValor()))
+#     return scores
 
 
 

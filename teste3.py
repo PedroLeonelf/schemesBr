@@ -140,7 +140,7 @@ def lcs_init(string1, string2):
 
 # print(similiarityBetweenStrings('qtd', 'quantidade')) #sim 46%
 
-print(lcs_init('video-ator', 'video-teporada'))
+# print(lcs_init('prod', 'prod_vendido'))
 
 # print(abbreviationDetector('cpf', 'codigo_pessoa_fisica')) #sim 100%
 
