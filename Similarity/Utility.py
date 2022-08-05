@@ -66,18 +66,25 @@ def AttributesSimiliarity(entity1, entity2):
     if entity1.getAtributos()[0].getNome().lower() == 'none' and entity2.getAtributos()[0].getNome().lower() == 'none': return 1
     for attribute in entity1.getAtributos():
         score += checkAttributeSimiliarity(attribute.getNome().lower().strip(), entity2.getAtributos(), attribute.isIdentifier())
+    
     score /= max(len(entity1.getAtributos()), len(entity2.getAtributos()))
     return score
 
 def checkAttributeSimiliarity(attribute, attributes, key):
+    
     vector = []
     firstAttribute = attributes[0].getNome().lower()
+    
     if attribute == 'none' and firstAttribute != 'none' or firstAttribute == 'none' and attribute != 'none':
         return 0
     for attr in attributes:
-        vector.append(mainComparatorStrings(attr.getNome().lower().strip(), attribute) * 0.8 + attr.isIdentifier() == key * 0.2)
+        vector.append(mainComparatorStrings(attr.getNome().lower().strip(), attribute) * 0.8 + equalKey(attr.isIdentifier(),key) * 0.2)
     return max(vector)
 
+def equalKey(key1, key2):
+    if key1 == key2:
+        return 1
+    return 0
 
 def truncate(number):
     return round(number, 2)

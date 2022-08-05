@@ -26,7 +26,7 @@ class EntitySim:
         if entity1.getSpecialization() == [] and entity2.getSpecialization() == []:
             return entityNamesSim
         elif entity1.getSpecialization() != [] and entity1.getSpecialization() != []:
-            return max(self.getBiggerScoreFromSpecializations(entity1, entity2), self.getBiggerScoreFromName(entity1, name2), getBiggerScoreFromName(entity2, name1), entityNamesSim)
+            return max(self.getBiggerScoreFromSpecializations(entity1, entity2), self.getBiggerScoreFromName(entity1, name2), self.getBiggerScoreFromName(entity2, name1), entityNamesSim)
         elif entity1.getSpecialization() != []:
             return max(self.getBiggerScoreFromName(entity1, name2), entityNamesSim)
         elif entity2.getSpecialization() != []:

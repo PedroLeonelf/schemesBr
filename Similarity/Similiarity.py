@@ -28,5 +28,4 @@ def graphSimiliarity(modelo1, modelo2) -> float:
     structureObj = Structure(modelo1, modelo2, entitiesScores, relationsScores)
     structureScore = structureObj.getScores()
     finalScore = defineFinalScore(entitySimObj.scoreName, entitySimObj.scoreAttributes, structureScore, modelo1.getEntidades())
-    print(entitySimObj.scoreAttributes)
     return finalScore * 100
