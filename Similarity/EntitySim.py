@@ -15,11 +15,36 @@ class EntitySim:
 
     def entitySimiliarity(self,entity1, entity2) -> float:
         name1, name2 = entity1.getNome().lower(), entity2.getNome().lower()
-        nameSim = mainComparatorStrings(name1, name2)
+        nameSim = self.nameSimilarity(name1, name2, entity1, entity2)
         attributeSim = AttributesSimiliarity(entity1, entity2)
         self.scoreAttributes[f'{entity1.getNome().lower()}-{entity2.getNome().lower()}'] = attributeSim
         self.scoreName[f'{entity1.getNome().lower()}-{entity2.getNome().lower()}'] = nameSim
         return truncate(max(nameSim,attributeSim))
         
+    def nameSimilarity(self,name1, name2, entity1, entity2):
+        entityNamesSim = mainComparatorStrings(name1, name2)
+        if entity1.getSpecialization() == [] and entity2.getSpecialization() == []:
+            return entityNamesSim
+        elif entity1.getSpecialization() != [] and entity1.getSpecialization() != []:
+            return max(self.getBiggerScoreFromSpecializations(entity1, entity2), self.getBiggerScoreFromName(entity1, name2), getBiggerScoreFromName(entity2, name1), entityNamesSim)
+        elif entity1.getSpecialization() != []:
+            return max(self.getBiggerScoreFromName(entity1, name2), entityNamesSim)
+        elif entity2.getSpecialization() != []:
+            return max(self.getBiggerScoreFromName(entity2, name1), entityNamesSim)
+
+    def getBiggerScoreFromSpecializations(self,entity1, entity2):
+        bigger = 0
+        for specialization1 in entity1.getSpecialization():
+            for specialization2 in entity2.getSpecialization():
+                actual = mainComparatorStrings(specialization1, specialization2)
+                bigger = actual if actual > bigger else bigger
+        return bigger
+
+    def getBiggerScoreFromName(self,entity, name):
+        bigger = 0
+        for specialization in entity.getSpecialization():
+            actual = mainComparatorStrings(specialization, name)
+            bigger = actual if actual > bigger else bigger
+        return bigger
 
 

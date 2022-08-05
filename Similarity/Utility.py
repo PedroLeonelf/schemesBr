@@ -12,14 +12,14 @@ utilizeSynonym = False
 
 #### string similiarity functions#################################################################
 def mainComparatorStrings(string1, string2):
-    print(f"{string1} == {string2}")
+    # print(f"{string1} == {string2}")
 
     isSimiliarityRate = lcs_init(string1, string2)
     if isSimiliarityRate > 0.8:
         return isSimiliarityRate
     sinonymRate = (isSinonym(string1, string2) if not english_text else is_sinonym_english(string1,string2)) if utilizeSynonym else 0  
     maximo = max(isSimiliarityRate, sinonymRate)
-    print(f"Valor maior:{maximo}\n")
+    # print(f"Valor maior:{maximo}\n")
     return maximo
 
 
@@ -63,7 +63,7 @@ def presentInSinonymList(string, list):
 ### Attribute similarity
 def AttributesSimiliarity(entity1, entity2):
     score = 0
-    if entity1.getAtributos()[0].getNome() == 'none' == entity2.getAtributos()[0].getNome(): return 1
+    if entity1.getAtributos()[0].getNome().lower() == 'none' and entity2.getAtributos()[0].getNome().lower() == 'none': return 1
     for attribute in entity1.getAtributos():
         score += checkAttributeSimiliarity(attribute.getNome().lower().strip(), entity2.getAtributos(), attribute.isIdentifier())
     score /= max(len(entity1.getAtributos()), len(entity2.getAtributos()))
@@ -71,7 +71,6 @@ def AttributesSimiliarity(entity1, entity2):
 
 def checkAttributeSimiliarity(attribute, attributes, key):
     vector = []
-    print(f'Attributes:{attributes}')
     firstAttribute = attributes[0].getNome().lower()
     if attribute == 'none' and firstAttribute != 'none' or firstAttribute == 'none' and attribute != 'none':
         return 0
