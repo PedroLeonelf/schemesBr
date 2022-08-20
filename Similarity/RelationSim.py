@@ -40,3 +40,6 @@ def neighboorsEntityScore(entity1, entities2, scores) -> float:
     for entity2 in entities2:
         vect.append(scores[f'{entity1.getNome().lower()}-{entity2.getNome().lower()}'] * 0.8 + 0.2 * (entity1.getKey() == entity2.getKey()))
     return max(vect)
+
+
+

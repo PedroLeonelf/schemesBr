@@ -20,6 +20,7 @@ class EntitySim:
         self.scoreAttributes[f'{entity1.getNome().lower()}-{entity2.getNome().lower()}'] = attributeSim
         self.scoreName[f'{entity1.getNome().lower()}-{entity2.getNome().lower()}'] = nameSim
         return truncate(max(nameSim,attributeSim))
+        # retorna mais alto entre a similaridade de nome e atributos
         
     def nameSimilarity(self,name1, name2, entity1, entity2):
         entityNamesSim = mainComparatorStrings(name1, name2)

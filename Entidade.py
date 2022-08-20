@@ -3,7 +3,7 @@ import Atributo as atribute
 
 class Entidade:
     def  __init__(self, parametros):
-        self.nomeEntidade = parametros[0][0].upper() + parametros[0][1:].lower()
+        self.nomeEntidade = parametros[0].title()
         self.atributos = []
         self.especializacao = []
         self.relacionamentos = []

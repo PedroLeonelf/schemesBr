@@ -1,7 +1,7 @@
 
-from Similarity.RelationSim import *
 from Similarity.Utility import *
 from Similarity.EntitySim import *
+from Similarity.RelationSim import *
 from Similarity.StructureSim import *
 from Similarity.finalCalc import defineFinalScore
 metaScore = 0.7
