@@ -1,11 +1,11 @@
 import xml.etree.ElementTree as ET
 
-from attr import attributes
 
 
 class xmlToCode:
     def __init__(self) -> None:
-        tree = ET.parse('xml/xmltest2.xml')
+        ET.XMLParser()
+        tree = ET.parse('xml/teste3.xml', parser = ET.XMLParser(encoding = 'iso-8859-5'))
         self.root = tree.getroot()
         self.fileName = 'xml/translatedText.txt'
         self.entities = []
@@ -16,7 +16,8 @@ class xmlToCode:
         self.initializeGets()
     
     def initializeGets(self) -> None:
-        self.getentities()
+        self.getSpecializations()
+        self.getEntities()
         self.getRelationships()
         self.getAttributes()
         self.getConnections()
@@ -25,14 +26,15 @@ class xmlToCode:
         self.getConnections()
         self.getCardinalities()
         self.linkCardinalities()
+        self.linkSpecializations()
         self.translate()
 
     # nomes das entidades
-    def getentities(self) -> None:
+    def getEntities(self) -> None:
         for entity in self.root.iter('Entidade'): 
             item = entity.find('Texto')
             position = entity.find('Bounds')
-            self.entities.append({'Name':item.text.replace(' ', '_'), 'id' : entity.attrib['ID'], 'attributes' : [], 'position' : [position.attrib['Left'], position.attrib['Top']]})
+            self.entities.append({'specializationLeader' : -1,'Name':item.text.replace(' ', '_'), 'id' : entity.attrib['ID'], 'attributes' : [], 'position' : [position.attrib['Left'], position.attrib['Top']]})
 
     # nomes dos relacionamentos
     def getRelationships(self) -> None:
@@ -71,7 +73,13 @@ class xmlToCode:
     
 
     # especializações
-    
+    def getSpecializations(self) -> None:
+        self.specializations = []
+        for specialization in self.root.iter('Especializacao'):
+            position = specialization.find('Bounds')
+            self.specializations.append({'id':specialization.attrib['ID'], 'position' : [position.attrib['Left'], position.attrib['Top']]})
+        
+      
         
     
 
@@ -80,8 +88,8 @@ class xmlToCode:
     def getConnections(self) -> None:
         for connection in self.root.iter('Ligacao'):
             for item in connection.iter('Ligacoes'):
-                
                 self.defineConnection(item.attrib['PontaA'], item.attrib['PontaB'])
+        self.connections = [dict(t) for t in {tuple(d.items()) for d in self.connections}] # avoid duplicates
 
     # printar conexoes
     def printConnections(self) -> None:
@@ -91,6 +99,7 @@ class xmlToCode:
     # definir conexoes
     def defineConnection(self, pointA, pointB) -> None:
         self.connections.append({'PontaA' : self.getConnection(pointA), 'typeA' : self.getType(pointA), 'PontaB' : self.getConnection(pointB), 'typeB' : self.getType(pointB)})
+  
 
     # definir uma conexao
     def getConnection(self, point) -> str:
@@ -102,7 +111,12 @@ class xmlToCode:
                 return relationship['Name']  
         for attribute in self.attributes:
             if attribute['id'] == point:
-                return attribute['Name']          
+                return attribute['Name']
+        for special in self.specializations:
+            if special['id'] == point:
+                return special['id']
+
+
     
     # definir tipo de conexao
     def getType(self, point) -> str:
@@ -115,6 +129,9 @@ class xmlToCode:
         for attribute in self.attributes:
             if attribute['id'] == point:
                 return 'Attribute'
+        for special in self.specializations:
+            if special['id'] == point:
+                return 'Specialization'
     
     # linkar entidades
     def linkEntities(self) -> None:
@@ -152,6 +169,40 @@ class xmlToCode:
                     entityLink = entity
             self.defineCardinalityInRelationship(entityLink, cardinality)
     
+    def linkSpecializations(self) -> None:
+        for connection in self.connections:
+            if connection['typeA'] == 'Specialization' and connection['typeB'] == 'Entity' or connection['typeA'] == 'Entity' and connection['typeB'] == 'Specialization':
+                self.defineSpecialization(connection)
+    
+    def defineSpecialization(self, connection) -> None:
+        entity = connection['PontaA'] if connection['typeA'] == 'Entity' else connection['PontaB']
+        specialId = connection['PontaA'] if connection['typeA'] == 'Specialization' else connection['PontaB']
+        self.setEntityAsSpecial(entity, specialId)
+
+    def setEntityAsSpecial(self, entityName, specialization) -> None:
+        for entity in self.entities:
+            if entity['Name'] == entityName and self.entityIsAbove(entity, specialization):
+                entity['specializationLeader'] = 1
+            else:
+                entity['specializationLeader'] = 0
+            entity['specialId'] = specialization
+            print(entity)
+            exit(0)
+
+
+    def entityIsAbove(self, entity, specializationId) -> bool:
+        specialization = self.findSpecialization(specializationId)
+        specialPos = specialization['position'][1]
+        entityPos = entity['position'][1]
+        return specialPos > entityPos
+    
+    def findSpecialization(self, id) -> dict:
+        for special in self.specializations:
+            if special['id'] == id:
+                return special
+
+
+
     def defineCardinalityInRelationship(self, entity, cardinality) -> None:
         for relationship in self.relationships:
             if entity['Name'] in relationship['entities']  and len(relationship['cardinalities']) < 2:
@@ -223,3 +274,4 @@ xml = xmlToCode()
 # xml.printEntities()
 # xml.printCardinalities()
 # xml.printRelationships()
+xml.printConnections()

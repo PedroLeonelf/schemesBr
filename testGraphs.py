@@ -294,17 +294,17 @@ def teste_arquivos(arq1, arq2):
 
 # teste_artigo()
 
-# lst = [teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo1') # 100
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo2') # 98
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo3') # 94
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo4') # 93
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo5') # 85
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo6') # 84 
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo7') # 81
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo8') # 77
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo9') # 69
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo10')# 62
-# ]# teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo11')
+lst = [teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo1') # 100
+,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo2') # 98
+,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo3') # 94
+,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo4') # 93
+,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo5') # 85
+,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo6') # 84 
+,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo7') # 81
+,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo8') # 77
+,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo9') # 69
+,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo10')# 62
+]# teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo11')
 
 # lst = [
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/1.txt'), # 85
@@ -331,30 +331,30 @@ def teste_arquivos(arq1, arq2):
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/22.txt'),# 89
 # ]# 
 
-lst = [
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/1.txt'), # 85
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/2.txt'), # 86
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/3.txt'), # 86 
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/4.txt'), # 79 min
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/5.txt'), # 85
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/6.txt'), # 85 **88
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/7.txt'), # 91 
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/8.txt'), # 89 **94
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/9.txt'), # 85 **93
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/10.txt'),# 93 
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/11.txt'),# 82
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/12.txt'),# 84 *88
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/13.txt'),# 89 
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/14.txt'),# 89
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/15.txt'),# 98 max 
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/16.txt'),# 81 **86
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/17.txt'),# 82 **90
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/18.txt'),# 85 
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/19.txt'),# 75 **83
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/20.txt'),# 82
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/21.txt'),# 85
-teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/22.txt'),# 89
-]# 
+# lst = [
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/1.txt'), # 85
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/2.txt'), # 86
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/3.txt'), # 86 
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/4.txt'), # 79 min
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/5.txt'), # 85
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/6.txt'), # 85 **88
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/7.txt'), # 91 
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/8.txt'), # 89 **94
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/9.txt'), # 85 **93
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/10.txt'),# 93 
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/11.txt'),# 82
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/12.txt'),# 84 *88
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/13.txt'),# 89 
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/14.txt'),# 89
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/15.txt'),# 98 max 
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/16.txt'),# 81 **86
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/17.txt'),# 82 **90
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/18.txt'),# 85 
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/19.txt'),# 75 **83
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/20.txt'),# 82
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/21.txt'),# 85
+# teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/22.txt'),# 89
+# ]# 
 
 for chave, item in enumerate(lst):
     print(f'{chave+1} - {item}')

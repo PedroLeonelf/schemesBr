@@ -1,5 +1,3 @@
-entity(Pessoa)
-entity(Contas, key num_da_conta)
-entity(Profissao)
-relation(possui, Pessoa [1:1], Contas [1:N])
-relation(temProfissao, Pessoa [1:N], Profissao [1:1])
+entity(Entidade_1)
+entity(Entidade_2)
+entity(Entidade_3)

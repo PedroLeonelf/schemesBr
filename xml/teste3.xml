@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="6957-90-AA45-F8-619-6E-F0">
+    <InfoDiagrama ID="1">
+        <Versao Valor="3.2.0"/>
+        <Autores/>
+        <Observacao/>
+        <Width Valor="4096"/>
+        <Height Valor="4096"/>
+        <Alinhamento_v Valor="50"/>
+        <Alinhamento_h Valor="60"/>
+        <Zoom Valor="100"/>
+        <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
+        <Localizacao Left="0" Top="0"/>
+        <Realce Valor="false"/>
+    </InfoDiagrama>
+    <Entidade ID="3">
+        <Bounds Height="58" Left="372" Top="212" Width="120"/>
+        <DisablePainted Valor="false"/>
+        <Texto>Entidade_1</Texto>
+        <Observacao/>
+        <Dicionario/>
+        <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
+        <Ancorado Valor="false"/>
+        <AtributosOcultos Valor=""/>
+    </Entidade>
+    <Especializacao ID="5">
+        <Bounds Height="32" Left="410" Top="306" Width="40"/>
+        <DisablePainted Valor="false"/>
+        <Texto>Especialização_1</Texto>
+        <Observacao/>
+        <Dicionario/>
+        <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
+        <Ancorado Valor="false"/>
+        <Direcao Valor="0"/>
+        <Ocupado01 ID="5"/>
+        <Ocupado02 ID="-1"/>
+        <Ocupado03 ID="-1"/>
+        <Parcial Valor="false"/>
+    </Especializacao>
+    <Ligacao ID="6">
+        <DisablePainted Valor="false"/>
+        <Tag LinhaMestre="-1"/>
+        <Dashed Valor="false"/>
+        <Ancorado Valor="false"/>
+        <TemSetaPontaA Valor="false"/>
+        <TemSetaPontaB Valor="false"/>
+        <SetaAberta Valor="true"/>
+        <SetaLargura Valor="10"/>
+        <Inteligente Valor="false"/>
+        <Largura Valor="1"/>
+        <Ligacoes PontaA="3" PontaB="5"/>
+        <Pontos>
+            <Ponto Left="427" Top="267"/>
+            <Ponto Left="427" Top="303"/>
+        </Pontos>
+    </Ligacao>
+    <Entidade ID="7">
+        <Bounds Height="58" Left="273" Top="408" Width="120"/>
+        <DisablePainted Valor="false"/>
+        <Texto>Entidade_2</Texto>
+        <Observacao/>
+        <Dicionario/>
+        <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
+        <Ancorado Valor="false"/>
+        <AtributosOcultos Valor=""/>
+    </Entidade>
+    <Ligacao ID="8">
+        <DisablePainted Valor="false"/>
+        <Tag LinhaMestre="-1"/>
+        <Dashed Valor="false"/>
+        <Ancorado Valor="false"/>
+        <TemSetaPontaA Valor="false"/>
+        <TemSetaPontaB Valor="false"/>
+        <SetaAberta Valor="true"/>
+        <SetaLargura Valor="10"/>
+        <Inteligente Valor="false"/>
+        <Largura Valor="1"/>
+        <Ligacoes PontaA="5" PontaB="7"/>
+        <Pontos>
+            <Ponto Left="427" Top="335"/>
+            <Ponto Left="328" Top="404"/>
+        </Pontos>
+    </Ligacao>
+    <Entidade ID="24">
+        <Bounds Height="58" Left="464" Top="408" Width="120"/>
+        <DisablePainted Valor="false"/>
+        <Texto>Entidade_3</Texto>
+        <Observacao/>
+        <Dicionario/>
+        <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
+        <Ancorado Valor="false"/>
+        <AtributosOcultos Valor=""/>
+    </Entidade>
+    <Ligacao ID="31">
+        <DisablePainted Valor="false"/>
+        <Tag LinhaMestre="-1"/>
+        <Dashed Valor="false"/>
+        <Ancorado Valor="false"/>
+        <TemSetaPontaA Valor="false"/>
+        <TemSetaPontaB Valor="false"/>
+        <SetaAberta Valor="true"/>
+        <SetaLargura Valor="10"/>
+        <Inteligente Valor="false"/>
+        <Largura Valor="1"/>
+        <Ligacoes PontaA="24" PontaB="5"/>
+        <Pontos>
+            <Ponto Left="536" Top="404"/>
+            <Ponto Left="427" Top="335"/>
+        </Pontos>
+    </Ligacao>
+</DIAGRAMA>
