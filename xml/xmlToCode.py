@@ -4,7 +4,6 @@ import xml.etree.ElementTree as ET
 
 class xmlToCode:
     def __init__(self) -> None:
-        ET.XMLParser()
         tree = ET.parse('xml/teste3.xml', parser = ET.XMLParser(encoding = 'iso-8859-5'))
         self.root = tree.getroot()
         self.fileName = 'xml/translatedText.txt'
