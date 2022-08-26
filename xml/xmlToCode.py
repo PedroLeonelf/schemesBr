@@ -169,9 +169,29 @@ class xmlToCode:
             self.defineCardinalityInRelationship(entityLink, cardinality)
     
     def linkSpecializations(self) -> None:
+        connections = []
         for connection in self.connections:
             if connection['typeA'] == 'Specialization' and connection['typeB'] == 'Entity' or connection['typeA'] == 'Entity' and connection['typeB'] == 'Specialization':
                 self.defineSpecialization(connection)
+                connections.append(connection)
+        self.linkEntitySpecializations(connections)
+        self.entities = sorted(self.entities, key=lambda d: d['specializationLeader'], reverse=True) 
+    
+    def linkEntitySpecializations(self, connections):
+        for connection in connections:
+            entityName = connection['PontaA'] if connection['typeA'] == 'Entity' else connection['PontaB']
+            self.markEntitySpecialization(entityName)
+        
+
+    def markEntitySpecialization(self, entityName):
+        for entity in self.entities:
+            if entity['Name'] == entityName and entity['specializationLeader'] == 0:
+                entity['entityLeader'] = self.getEntityLeader(entity['specialId'])
+    
+    def getEntityLeader(self, entityId):
+        for entity in self.entities:
+            if entity['specialId'] == entityId and entity['specializationLeader'] == 1:
+                return entity['Name']
     
     def defineSpecialization(self, connection) -> None:
         entity = connection['PontaA'] if connection['typeA'] == 'Entity' else connection['PontaB']
@@ -182,17 +202,17 @@ class xmlToCode:
         for entity in self.entities:
             if entity['Name'] == entityName and self.entityIsAbove(entity, specialization):
                 entity['specializationLeader'] = 1
-            else:
+            elif entity['Name'] == entityName:
                 entity['specializationLeader'] = 0
             entity['specialId'] = specialization
-            print(entity)
-            exit(0)
+        
 
 
     def entityIsAbove(self, entity, specializationId) -> bool:
         specialization = self.findSpecialization(specializationId)
         specialPos = specialization['position'][1]
         entityPos = entity['position'][1]
+        print(specialPos, entityPos)
         return specialPos > entityPos
     
     def findSpecialization(self, id) -> dict:
@@ -270,7 +290,7 @@ class xmlToCode:
 xml = xmlToCode()
 
 # xml.printCardinalities()
-# xml.printEntities()
+xml.printEntities()
 # xml.printCardinalities()
 # xml.printRelationships()
-xml.printConnections()
+# xml.printConnections()
