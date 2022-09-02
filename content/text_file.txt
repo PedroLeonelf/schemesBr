@@ -1,25 +1,5 @@
 @startuml
-Entity Comprador{
-+ ID
---
-- CPF
-- Endereco
-}
-Entity Compra{
-+ ID
---
-- Data
-- Total
-}
-Entity Item{
-+ ID
---
-- Nome
-- Qtd
-- Preco
-}
-package Realiza <<Cloud>> {
-}
-package Possui <<Cloud>> {
+Entity Trabalhador{
+- salario
 }
 @enduml

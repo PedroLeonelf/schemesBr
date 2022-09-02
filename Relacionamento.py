@@ -56,7 +56,7 @@ class Relation:
 
 class EntidadeRelacionada:
     def __init__(self, nome, cardinalidade, key = False):
-        self.nome = nome[0].upper() + nome[1:].lower()
+        self.nome = nome.title()
         self.cardinalidade = cardinalidade
         self.key = key
         
