@@ -1,4 +1,3 @@
-from ast import arg
 import Modelo as model
 import Entidade as entity
 import Relacionamento as relation
@@ -23,6 +22,7 @@ class Parser:
                 self.modelo = None
                 return
             self.numeroLinha+=1
+        self.adicionaEntidadeNParaN()
         print("Compilation complete.")
 
 
@@ -166,6 +166,7 @@ class Parser:
         self.checaEntidades(argumentos)
         self.modelo.adicionaRelacionamento(self.criaRelacionamento(argumentos))
         self.adicionaRelacionamentoNaEntidade(self.modelo.getRelacionamentos()[-1])
+        
     
 
     def checaRelacionamentoVazio(self, argumentos) -> None:
@@ -193,7 +194,7 @@ class Parser:
     def avaliaEntidade(self, entidade):
         entidade = entidade[0].upper() + entidade[1:].lower()
         for entidadeIndex in self.modelo.getEntidades():
-            if entidadeIndex.getNome() == entidade:
+            if entidadeIndex.getNome().lower() == entidade.lower():
                 return
         self.levantaErro(f"Entity name {entidade} not exist in {self.linhaAtual}, line {self.numeroLinha}")
     
@@ -221,6 +222,7 @@ class Parser:
             self.validaRelacionamento(argumentos)
             self.validaAtributos(argumentos)
             self.enviaAtributacaoRelacional(argumentos)
+            self.adicionaAtributosEntidadeN(self.modelo.getRelacionamentoPorNome(argumentos.split(',')[0]))
         else:
             self.validaAtributos(argumentos)
             self.enviaAtributacaoEntidade(argumentos)
@@ -316,7 +318,29 @@ class Parser:
                 if entidade.getNome() == entidadeNome.getNome():
                      
                     entidade.setRelacionamento(relacionamento.getNome())
-                    
+
+
+    def adicionaAtributosEntidadeN(self, relacionamento):
+        if relacionamento.entidadeN == None:
+            return
+        entidade = self.modelo.getEntidadePorNome(relacionamento.entidadeN)
+        entidade.atributos.extend(relacionamento.atributos)
+        entidade.atributos = list(set(entidade.atributos))
+        
+
+    def adicionaEntidadeNParaN(self):
+        for relacionamento in self.modelo.getRelacionamentos():
+            if relacionamento.muitoParaMuitos:
+                entidade = entity.Entidade([f'{relacionamento.nome}'])
+                entidade.atributos.extend(relacionamento.atributos)
+                entidade.draw = False
+                self.modelo.adicionaEntidade(entidade)
+                
+
+       
+        
+        
+            
 
  
 

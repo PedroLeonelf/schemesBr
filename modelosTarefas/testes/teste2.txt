@@ -1,0 +1,4 @@
+entity(entidade1)
+entity(entidade2)
+relation(rel, entidade1 [1:1], entidade2 [1:1])
+attribute(entidade1, atributo1, atributo2)

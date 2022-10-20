@@ -3,11 +3,13 @@ import Atributo as atribute
 
 class Entidade:
     def  __init__(self, parametros):
+
         self.nomeEntidade = parametros[0].title()
         self.atributos = []
         self.especializacao = []
         self.relacionamentos = []
         atributosParametrizados = parametros[1:]
+        self.draw = True
         for atributo in atributosParametrizados:
             self.atributos.append(atribute.Atributo(atributo))
         

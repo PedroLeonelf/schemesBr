@@ -23,9 +23,12 @@ class Modelo:
         return self.listaRelacionamentos
     
     def getRelacionamentoPorNome(self, nome):
+        
         for relacionamento in self.listaRelacionamentos:
-            if relacionamento.getNome() == nome:
+            if relacionamento.getNome().lower() == nome.lower():
                 return relacionamento
+        
+
 
     def getNomes(self):
         print("\nEntities:",end='')

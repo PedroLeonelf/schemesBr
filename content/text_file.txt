@@ -1,5 +1,12 @@
 @startuml
-Entity Trabalhador{
-- salario
+Entity Entidade1{
 }
+Entity Entidade2{
+- atributo1
+- atributo2
+}
+package Rel <<Cloud>> {
+}
+Entidade1 ||-> Rel : [1:1]
+Rel <-|{ Entidade2 : [1:N]
 @enduml

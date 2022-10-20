@@ -44,9 +44,10 @@ class ParserToUml:
 
     def translateEntities(self, entities):
         for entity in entities:
-            self.text.append(f"Entity {entity.getNome()}" + '{')
-            self.translateAtributes(entity.getAtributos())
-            self.text.append("}")
+            if entity.draw:
+                self.text.append(f"Entity {entity.getNome()}" + '{')
+                self.translateAtributes(entity.getAtributos())
+                self.text.append("}")
     
         
     

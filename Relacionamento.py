@@ -6,6 +6,7 @@ class Relation:
         self.nome = argumentos[0].title()
         self.entidadesRelacionadas = []
         self.atributos = []
+        self.entidadeN = None
         entidades_a_ser_relacionadas = argumentos[1:]
         for entidade in entidades_a_ser_relacionadas:
             parametros = entidade.split(' ')
@@ -30,9 +31,11 @@ class Relation:
         for entidadeRelacionada in self.entidadesRelacionadas:
             if entidadeRelacionada.getCardinalidade().upper() == '[1:N]':
                 cont+=1
-            if cont == 2:
-                self.muitoParaMuitos = True
-                return
+        if cont == 1:
+            self.entidadeN = entidadeRelacionada.nome
+        elif cont == 2:
+            self.muitoParaMuitos = True
+                
     
     def setAtributos(self, atributos):
         for atr in atributos:
@@ -59,6 +62,7 @@ class EntidadeRelacionada:
         self.nome = nome.title()
         self.cardinalidade = cardinalidade
         self.key = key
+ 
         
     def getNome(self):
         return self.nome
