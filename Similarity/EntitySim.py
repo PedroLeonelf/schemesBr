@@ -21,31 +21,47 @@ class EntitySim:
         self.scoreName[f'{entity1.getNome().lower()}-{entity2.getNome().lower()}'] = nameSim
         return truncate(max(nameSim,attributeSim))
         # retorna mais alto entre a similaridade de nome e atributos
+
+    def nameSimilarity(self, name1, name2, entity1, entity2) -> float:
+        lst1 = [name1] + entity1.especializacao
+        lst2 = [name2] + entity2.especializacao
+        return self.mostBiggerScore(lst1, lst2)
+
+    
+    def mostBiggerScore(self, lst1, lst2) -> float:
+        bigger = 0
+        for item1 in lst1:
+            for item2 in lst2:
+                numberGet = mainComparatorStrings(item1, item2)
+                if numberGet > bigger:
+                    bigger = numberGet
+        return bigger
+
         
-    def nameSimilarity(self,name1, name2, entity1, entity2):
-        entityNamesSim = mainComparatorStrings(name1, name2)
-        if entity1.getSpecialization() == [] and entity2.getSpecialization() == []:
-            return entityNamesSim
-        elif entity1.getSpecialization() != [] and entity1.getSpecialization() != []:
-            return max(self.getBiggerScoreFromSpecializations(entity1, entity2), self.getBiggerScoreFromName(entity1, name2), self.getBiggerScoreFromName(entity2, name1), entityNamesSim)
-        elif entity1.getSpecialization() != []:
-            return max(self.getBiggerScoreFromName(entity1, name2), entityNamesSim)
-        elif entity2.getSpecialization() != []:
-            return max(self.getBiggerScoreFromName(entity2, name1), entityNamesSim)
+    # def nameSimilarity(self,name1, name2, entity1, entity2):
+    #     entityNamesSim = mainComparatorStrings(name1, name2)
+    #     if entity1.getSpecialization() == [] and entity2.getSpecialization() == []:
+    #         return entityNamesSim
+    #     elif entity1.getSpecialization() != [] and entity1.getSpecialization() != []:
+    #         return max(self.getBiggerScoreFromSpecializations(entity1, entity2), self.getBiggerScoreFromName(entity1, name2), self.getBiggerScoreFromName(entity2, name1), entityNamesSim)
+    #     elif entity1.getSpecialization() != []:
+    #         return max(self.getBiggerScoreFromName(entity1, name2), entityNamesSim)
+    #     elif entity2.getSpecialization() != []:
+    #         return max(self.getBiggerScoreFromName(entity2, name1), entityNamesSim)
 
-    def getBiggerScoreFromSpecializations(self,entity1, entity2):
-        bigger = 0
-        for specialization1 in entity1.getSpecialization():
-            for specialization2 in entity2.getSpecialization():
-                actual = mainComparatorStrings(specialization1, specialization2)
-                bigger = actual if actual > bigger else bigger
-        return bigger
+    # def getBiggerScoreFromSpecializations(self,entity1, entity2):
+    #     bigger = 0
+    #     for specialization1 in entity1.getSpecialization():
+    #         for specialization2 in entity2.getSpecialization():
+    #             actual = mainComparatorStrings(specialization1, specialization2)
+    #             bigger = actual if actual > bigger else bigger
+    #     return bigger
 
-    def getBiggerScoreFromName(self,entity, name):
-        bigger = 0
-        for specialization in entity.getSpecialization():
-            actual = mainComparatorStrings(specialization, name)
-            bigger = actual if actual > bigger else bigger
-        return bigger
+    # def getBiggerScoreFromName(self,entity, name):
+    #     bigger = 0
+    #     for specialization in entity.getSpecialization():
+    #         actual = mainComparatorStrings(specialization, name)
+    #         bigger = actual if actual > bigger else bigger
+    #     return bigger
 
 

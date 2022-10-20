@@ -294,17 +294,17 @@ def teste_arquivos(arq1, arq2):
 
 # teste_artigo()
 
-lst = [teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo1') # 100
-,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo2') # 98
-,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo3') # 94
-,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo4') # 93
-,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo5') # 85
-,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo6') # 84 
-,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo7') # 81
-,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo8') # 77
-,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo9') # 69
-,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo10')# 62
-]# teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo11')
+# lst = [teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo1') # 100
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo2') # 98
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo3') # 94
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo4') # 93
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo5') # 85
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo6') # 84 
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo7') # 81
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo8') # 77
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo9') # 69
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo10')# 62
+# ]# teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo11')
 
 # lst = [
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/1.txt'), # 85
@@ -356,8 +356,8 @@ lst = [teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo1') # 10
 # teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/22.txt'),# 89
 # ]# 
 
-for chave, item in enumerate(lst):
-    print(f'{chave+1} - {item}')
+# for chave, item in enumerate(lst):
+#     print(f'{chave+1} - {item}')
 
-# teste_arquivos('textos/specialization1', 'textos/specialization2')
+teste_arquivos('textos/specialization1', 'textos/specialization2')
 
