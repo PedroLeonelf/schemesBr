@@ -14,6 +14,9 @@ class EntitySim:
         return dict
 
     def entitySimiliarity(self,entity1, entity2) -> float:
+        
+        
+
         name1, name2 = entity1.getNome().lower(), entity2.getNome().lower()
         nameSim = self.nameSimilarity(name1, name2, entity1, entity2)
         attributeSim = AttributesSimiliarity(entity1, entity2)

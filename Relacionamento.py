@@ -30,10 +30,10 @@ class Relation:
         self.muitoParaMuitos = False
         for entidadeRelacionada in self.entidadesRelacionadas:
             if entidadeRelacionada.getCardinalidade().upper() == '[1:N]':
+                self.entidadeN = entidadeRelacionada.nome
                 cont+=1
-        if cont == 1:
-            self.entidadeN = entidadeRelacionada.nome
-        elif cont == 2:
+        if cont == 2:
+            self.entidadeN = None
             self.muitoParaMuitos = True
                 
     

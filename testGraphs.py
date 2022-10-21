@@ -299,12 +299,12 @@ def teste_arquivos(arq1, arq2):
 # ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo2') # 97
 # ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo3') # 95
 # ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo4') # 93
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo5') # 87
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo6') # 83 
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo7') # 80
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo8') # 77
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo9') # 68
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo10')# 59
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo5') # 88
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo6') # 84 
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo7') # 82
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo8') # 79
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo9') # 71
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo10')# 63
 # ]# teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo11')
 
 # lst = [

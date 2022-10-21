@@ -17,7 +17,9 @@ class Structure:
         value = 0
     
         entityNeighboorScore = self.neighboorSim(entity1, entity2, entitiesScores)
-        value = (entityNeighboorScore + cardinalityScore) / 2
+        cardinalityScore = self.cardinalitySim(entity1, entity2)
+       
+        value = (0.8 * entityNeighboorScore + 0.2 * cardinalityScore)
         return truncate(value)
 
 
@@ -46,3 +48,21 @@ class Structure:
                 if entitie.getNome() != entity.getNome():
                     vect.append(entitie)
         return vect
+
+
+    def cardinalitySim(self, entity1, entity2) -> float:
+        rel1, rel2 = entity1.relacionamentos, entity2.relacionamentos
+        tmp,vect = [],[]
+        for r1 in rel1:
+            for r2 in rel2:
+                tmp.append(self.relationCardinalityScore(r1, r2))
+            vect.append(max(tmp))
+        return average(vect)
+
+    def relationCardinalityScore(self, relation1, relation2) -> float:
+        rel1, rel2 = self.model1.getRelacionamentoPorNome(relation1), self.model2.getRelacionamentoPorNome(relation2)
+        card1, card2 = rel1.getCardinalidades(), rel2.getCardinalidades()
+        card1.sort()
+        card2.sort()
+        score = 1 if card1 == card2 else 0
+        return score

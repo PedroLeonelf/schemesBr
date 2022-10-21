@@ -27,6 +27,7 @@ class ParserToUml:
     
     def writeUmlText(self):
         with open(self.fileLocation, "w") as file:
+            file.write("allowmixing\n")
             file.write("@startuml\n")
         with open(self.fileLocation, "a") as file:
             for linha in self.text:
@@ -48,6 +49,11 @@ class ParserToUml:
                 self.text.append(f"Entity {entity.getNome()}" + '{')
                 self.translateAtributes(entity.getAtributos())
                 self.text.append("}")
+            if entity.especializacao != []:
+                for special in entity.especializacao:
+                    self.text.append(f'usecase {special}')
+                    self.text.append(f"{entity.getNome()} --> {special}")
+
     
         
     

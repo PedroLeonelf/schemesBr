@@ -1,12 +1,32 @@
+allowmixing
 @startuml
-Entity Entidade1{
+Entity Ator{
++ codigo
+--
+- nome
+- data-nascimento
 }
-Entity Entidade2{
-- atributo1
-- atributo2
+Entity Video{
++ codigo
+--
+- titulo
+- categoria
 }
-package Rel <<Cloud>> {
+usecase  filme
+Video -->  filme
+usecase  serie
+Video -->  serie
+Entity Usuario{
++ email
+--
+- nome-completo
 }
-Entidade1 ||-> Rel : [1:1]
-Rel <-|{ Entidade2 : [1:N]
+package Ator_Video <<Cloud>> {
+}
+Ator }o-> Ator_Video : [0:N]
+Ator_Video <-o{ Video : [0:N]
+package Execucao <<Cloud>> {
+}
+Video }o-> Execucao : [0:N]
+Execucao <-o{ Usuario : [0:N]
 @enduml

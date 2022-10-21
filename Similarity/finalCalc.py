@@ -15,11 +15,15 @@ def defineFinalScore(scoreEntitties, scoreAttribute, scoreStructure, entidades) 
 def integrateDics(nameDict, attributeDict, structureDict) -> dict:
     dict = {}
     for (k1,v1),(k2,v2),(k3,v3) in zip(nameDict.items(), attributeDict.items(), structureDict.items()):
+        # print(k1,v1)
+        # print(k2,v2)
+        print(k3,v3)
         dict[k1] = calculateMedia(v1,v2,v3)
     return dict 
 
 def calculateMedia(v1,v2,v3):
     vect = [v1,v2,v3]
+    
     vect.sort()
     return truncate(vect[2] * alpha + vect[1] * beta + vect[0] * gama)
 
