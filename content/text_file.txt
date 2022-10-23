@@ -1,32 +1,31 @@
 allowmixing
 @startuml
-Entity Ator{
-+ codigo
+Entity Produto{
++ tipo
 --
 - nome
-- data-nascimento
+- valor
 }
-Entity Video{
-+ codigo
+Entity Pessoa{
+- cpf [1:1]
+- nome
+- idade
+}
+Entity Mercado{
++ nome
 --
-- titulo
-- categoria
 }
-usecase  filme
-Video -->  filme
-usecase  serie
-Video -->  serie
-Entity Usuario{
-+ email
+Entity Dinheiro{
++ id
 --
-- nome-completo
+- valor
 }
-package Ator_Video <<Cloud>> {
+Produto ||---|{ Dinheiro
+Pessoa ||---|{ Produto
+Class Recebe {
+- qtd
+- teste
 }
-Ator }o-> Ator_Video : [0:N]
-Ator_Video <-o{ Video : [0:N]
-package Execucao <<Cloud>> {
-}
-Video }o-> Execucao : [0:N]
-Execucao <-o{ Usuario : [0:N]
+Mercado }|--> Recebe
+Recebe <---|{ Dinheiro
 @enduml

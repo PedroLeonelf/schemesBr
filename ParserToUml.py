@@ -85,9 +85,8 @@ class ParserToUml:
                 self.text.append(f"Class {relation.getNome()} "+ "{")
                 self.getRelationAttributes(relation)
                 self.text.append('}')
-            else:
-                self.text.append(f"package {relation.getNome()} <<Cloud>> " + '{\n' + '}')
-            self.translateRelatedEntities(relation.getEntidadesRelacionadas(), relation.getNome())
+
+            self.translateRelatedEntities(relation.getEntidadesRelacionadas(), relation)
     
     def getRelationAttributes(self, relation):
         if relation.getAtributos() == []:
@@ -96,10 +95,12 @@ class ParserToUml:
 
         
 
-    def translateRelatedEntities(self, relatedEntities, relationName):
-        if len(relatedEntities) == 2:
-            self.text.append(f"{relatedEntities[0].getNome()} {self.getCardinalityArrow(relatedEntities[0].getCardinalidade().upper())}> {relationName} : {relatedEntities[0].getCardinalidade().upper()}")
-            self.text.append(f"{relationName} <{self.getInversedCardinalityArrow(relatedEntities[1].getCardinalidade().upper())} {relatedEntities[1].getNome()} : {relatedEntities[1].getCardinalidade().upper()}")
+    def translateRelatedEntities(self, relatedEntities, relation):
+        if relation.getMuitoParaMuitos():
+            self.text.append(f"{relatedEntities[0].getNome()} {self.getCardinalityArrow(relatedEntities[0].getCardinalidade().upper())}-> {relation.getNome()}")
+            self.text.append(f"{relation.getNome()} <--{self.getInversedCardinalityArrow(relatedEntities[1].getCardinalidade().upper())} {relatedEntities[1].getNome()}")
+        else:
+            self.text.append(f"{relatedEntities[0].getNome()} {self.getCardinalityArrow(relatedEntities[0].getCardinalidade().upper())}-{self.getInversedCardinalityArrow(relatedEntities[1].getCardinalidade().upper())} {relatedEntities[1].getNome()}")
 
     def getCardinalityArrow(self, cardinality):
         if cardinality == '[0:1]':
