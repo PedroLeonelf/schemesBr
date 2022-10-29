@@ -13,7 +13,7 @@ class Visuazador:
         self.screen_size = sg.Window.get_screen_size()
         self.IMAGE_SIZE = (self.THUMBNAIL_SIZE[0]+700,self.THUMBNAIL_SIZE[1]+500)
         self.file_types = [("PNG (*.png)", "*.png"), ("All files (*.*)", "*.*")]
-        self.tmp_file = "content/text_file.png"
+        self.tmp_file = "content/output.png"
         
 
     def make_square(self, im, min_size=256, fill_color=(0, 0, 0, 0)):
@@ -76,5 +76,5 @@ class Visuazador:
 
 
     def getWindow(self):
-        return sg.Window(title="Vizualizer" ,layout = self.display_image_window("content/text_file.png"), modal=True, element_padding=(0,0), resizable=True, finalize=True)
+        return sg.Window(title="Vizualizer" ,layout = self.display_image_window("content/output.png"), modal=True, element_padding=(0,0), resizable=True, finalize=True)
     

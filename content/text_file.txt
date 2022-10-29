@@ -1,31 +1,13 @@
 allowmixing
 @startuml
-Entity Produto{
-+ tipo
---
-- nome
-- valor
+Entity Entidade1{
 }
-Entity Pessoa{
-- cpf [1:1]
-- nome
-- idade
+Entity Entidade2{
 }
-Entity Mercado{
-+ nome
---
+Entity Rel{
+- atributo1
+- atributo2
 }
-Entity Dinheiro{
-+ id
---
-- valor
-}
-Produto ||---|{ Dinheiro
-Pessoa ||---|{ Produto
-Class Recebe {
-- qtd
-- teste
-}
-Mercado }|--> Recebe
-Recebe <---|{ Dinheiro
+Entidade1 |o--|{ Rel
+Entidade2 |o--|{ Rel
 @enduml

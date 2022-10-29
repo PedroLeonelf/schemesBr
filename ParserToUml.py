@@ -45,10 +45,9 @@ class ParserToUml:
 
     def translateEntities(self, entities):
         for entity in entities:
-            if entity.draw:
-                self.text.append(f"Entity {entity.getNome()}" + '{')
-                self.translateAtributes(entity.getAtributos())
-                self.text.append("}")
+            self.text.append(f"Entity {entity.getNome()}" + '{')
+            self.translateAtributes(entity.getAtributos())
+            self.text.append("}")
             if entity.especializacao != []:
                 for special in entity.especializacao:
                     self.text.append(f'usecase {special}')
@@ -100,27 +99,27 @@ class ParserToUml:
             self.text.append(f"{relatedEntities[0].getNome()} {self.getCardinalityArrow(relatedEntities[0].getCardinalidade().upper())}-> {relation.getNome()}")
             self.text.append(f"{relation.getNome()} <--{self.getInversedCardinalityArrow(relatedEntities[1].getCardinalidade().upper())} {relatedEntities[1].getNome()}")
         else:
-            self.text.append(f"{relatedEntities[0].getNome()} {self.getCardinalityArrow(relatedEntities[0].getCardinalidade().upper())}-{self.getInversedCardinalityArrow(relatedEntities[1].getCardinalidade().upper())} {relatedEntities[1].getNome()}")
+            self.text.append(f"{relatedEntities[0].getNome()} {self.getCardinalityArrow(relatedEntities[0].getCardinalidade().upper())}--{self.getInversedCardinalityArrow(relatedEntities[1].getCardinalidade().upper())} {relatedEntities[1].getNome()}")
 
     def getCardinalityArrow(self, cardinality):
         if cardinality == '[0:1]':
-            return '|o-'
+            return '|o'
         elif cardinality == '[1:1]':
-            return '||-'
+            return '||'
         elif cardinality == '[0:N]':
-            return '}o-'    
+            return '}o'    
         elif cardinality == '[1:N]':
-            return '}|-'
+            return '}|'
     
     def getInversedCardinalityArrow(self, cardinality):
         if cardinality == '[0:1]':
-            return '|o-'[::-1]
+            return '|o'[::-1]
         elif cardinality == '[1:1]':
-            return '||-'[::-1]
+            return '||'[::-1]
         elif cardinality == '[0:N]':
-            return '-o{'    
+            return 'o{'    
         elif cardinality == '[1:N]':
-            return '-|{'
+            return '|{'
 
 
 

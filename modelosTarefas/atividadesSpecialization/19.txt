@@ -7,7 +7,7 @@ entity(ator, key codigo, nome-artistico, nome-real, data-de-nascimento)
 specialization(video, filme, ep_serie)
 relation(conexao-maquina, conexao [0:n], maquina [1:1])
 relation(conexao-usuario, conexao [0:n], usuario [1:1])
-relation(maquina-video, maquina [1:1], video [0:1])
+relation(maquina-video, maquina [1:1], video [0:n])
 relation(video-atuacao, video [1:1], atuacao [0:n])
 relation(atuacao-ator, ator [1:1], atuacao [0:n])
 

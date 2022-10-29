@@ -9,7 +9,7 @@ class Entidade:
         self.especializacao = []
         self.relacionamentos = []
         atributosParametrizados = parametros[1:]
-        self.draw = True
+
         for atributo in atributosParametrizados:
             self.atributos.append(atribute.Atributo(atributo))
         

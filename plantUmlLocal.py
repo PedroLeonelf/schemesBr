@@ -23,8 +23,8 @@ def inicialization():
 
 def fillImage():
     img = Image.open('content/text_file.png')
-    right = 300
-    left = 300
+    right = 200
+    left = 200
     top = 0
     bottom = 0
     
@@ -59,7 +59,7 @@ def fillImage():
 
     # Volto o array para uma imagem do PIL
     im2 = Image.fromarray(data)
-    im2.save('content/text_file.png')
+    im2.save('content/output.png')
 
         
 

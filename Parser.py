@@ -1,3 +1,4 @@
+from time import sleep
 import Modelo as model
 import Entidade as entity
 import Relacionamento as relation
@@ -22,7 +23,12 @@ class Parser:
                 self.modelo = None
                 return
             self.numeroLinha+=1
-        self.adicionaEntidadeNParaN()
+        try:
+            self.adicionaEntidadeNParaN()
+        except Exception as e:
+            self.modelo = None
+            print(e)
+            return
         print("Compilation complete.")
 
 
@@ -329,13 +335,39 @@ class Parser:
         
 
     def adicionaEntidadeNParaN(self):
+
         for relacionamento in self.modelo.getRelacionamentos():
+            c1 = 1
+            
             if relacionamento.muitoParaMuitos:
                 entidade = entity.Entidade([f'{relacionamento.nome}'])
                 entidade.atributos.extend(relacionamento.atributos)
-                entidade.draw = False
-                self.modelo.adicionaEntidade(entidade)
+
                 
+                ents = relacionamento.entidadesRelacionadas
+                r1 = relation.Relation([f'{c1}', f'{ents[0].nome} [{ents[0].cardinalidade[1]}:1]', f'key {entidade.nomeEntidade} [1:N]']) 
+               
+                r2 = relation.Relation([f'{c1+1}', f'{ents[1].nome} [{ents[1].cardinalidade[1]}:1]', f'key {entidade.nomeEntidade} [1:N]'])
+                c1 += 2
+
+                entidade.relacionamentos.extend([r1.nome,r2.nome])
+                
+                self.modelo.getEntidadePorNome(ents[0].nome).relacionamentos.extend([r1.nome,r2.nome])
+                self.modelo.getEntidadePorNome(ents[1].nome).relacionamentos.extend([r1.nome,r2.nome])
+                # self.levantaErro(f'{c1}, {relacionamento.entidadesRelacionadas[0].nome} [1:1], key {entidade.nomeEntidade} [1:N]')
+                # self.levantaErro(f'{r2.getEntidadesRelacionadasNome()}')
+                self.modelo.adicionaEntidade(entidade)
+                self.modelo.adicionaRelacionamento(r1)
+                self.modelo.adicionaRelacionamento(r2)
+                self.deletaRelacionamento(relacionamento, relacionamento.entidadesRelacionadas[0].nome, relacionamento.entidadesRelacionadas[1].nome)
+
+    def deletaRelacionamento(self, relacionamento, nomeEnt1, nomeEnt2):
+
+        ent1, ent2 = self.modelo.getEntidadePorNome(nomeEnt1), self.modelo.getEntidadePorNome(nomeEnt2)
+        ent1.relacionamentos.remove(relacionamento.nome)
+        ent2.relacionamentos.remove(relacionamento.nome)
+        
+        self.modelo.listaRelacionamentos.remove(relacionamento)
 
        
         

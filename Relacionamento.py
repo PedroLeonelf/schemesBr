@@ -1,4 +1,5 @@
 #['Compra', 'key Cliente [1:N]', 'Produto [1:N]')]
+from time import sleep
 import Atributo
 class Relation:
     
@@ -8,6 +9,8 @@ class Relation:
         self.atributos = []
         self.entidadeN = None
         entidades_a_ser_relacionadas = argumentos[1:]
+       
+        
         for entidade in entidades_a_ser_relacionadas:
             parametros = entidade.split(' ')
             if len(parametros) == 2:
@@ -16,11 +19,20 @@ class Relation:
                 self.entidadesRelacionadas.append(EntidadeRelacionada(parametros[1], parametros[2], True))
         self.checaMuitosParaMuitos()
         
+        
+    def __str__(self):
+        return f'Relation:{self.nome}'    
     def getNome(self):
         return self.nome
     
     def getEntidadesRelacionadas(self):
         return self.entidadesRelacionadas
+    
+    def getEntidadesRelacionadasNome(self):
+        lst = []
+        for ent in self.entidadesRelacionadas:
+            lst.append(ent.nome)
+        return lst
     
     def getMuitoParaMuitos(self):
         return self.muitoParaMuitos
@@ -29,7 +41,7 @@ class Relation:
         cont = 0
         self.muitoParaMuitos = False
         for entidadeRelacionada in self.entidadesRelacionadas:
-            if entidadeRelacionada.getCardinalidade().upper() == '[1:N]':
+            if entidadeRelacionada.getCardinalidade().upper() in ['[1:N]', '[0:N]']:
                 self.entidadeN = entidadeRelacionada.nome
                 cont+=1
         if cont == 2:
@@ -74,8 +86,7 @@ class EntidadeRelacionada:
         return self.key
 
 
-relacionamento = Relation(['Compra', 'key Cliente [1:1]', 'Produto [1:N]'])
-print(relacionamento.getEntidadesRelacionadas()[1].getKey())
+
 
 
 
