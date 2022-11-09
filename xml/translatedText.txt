@@ -1,7 +1,6 @@
-entity(Pessoa)
-entity(Contas, key num_da_conta, saldo)
-entity(Profissao, Nome)
-relation(possui, Pessoa [1:1], Contas [1:N])
-relation(temProfissao, Pessoa [1:N], Profissao [1:1])
-
-
+entity(Empregado, cpf, nome, tipo-empregado, crea)
+specialization(Empregado,Gerente, Secretario, Engenheiro)
+entity(Departamento)
+entity(ata_de_reuniao)
+entity(projeto)
+relation(lotacao, Departamento [0:N], Empregado [1:1])

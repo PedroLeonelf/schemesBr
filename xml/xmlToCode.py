@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 
 class xmlToCode:
     def __init__(self) -> None:
-        tree = ET.parse('xml/xmltest2.xml', parser = ET.XMLParser(encoding = 'iso-8859-5'))
+        tree = ET.parse('xml/conceitual.xml', parser = ET.XMLParser(encoding = 'iso-8859-5'))
         self.root = tree.getroot()
         self.fileName = 'xml/translatedText.txt'
         self.entities = []
@@ -26,6 +26,7 @@ class xmlToCode:
         self.getCardinalities()
         self.linkCardinalities()
         self.linkSpecializations()
+       
         self.translate()
 
     # nomes das entidades
@@ -33,7 +34,7 @@ class xmlToCode:
         for entity in self.root.iter('Entidade'): 
             item = entity.find('Texto')
             position = entity.find('Bounds')
-            self.entities.append({'specializationLeader' : -1,'Name':item.text.replace(' ', '_'), 'id' : entity.attrib['ID'], 'attributes' : [], 'position' : [position.attrib['Left'], position.attrib['Top']]})
+            self.entities.append({'specializationLeader' : -1,'Name':item.text.replace(' ', '_'), 'id' : entity.attrib['ID'], 'attributes' : [], 'position' : [position.attrib['Left'], position.attrib['Top']], 'specializations' : []})
 
     # nomes dos relacionamentos
     def getRelationships(self) -> None:
@@ -99,6 +100,19 @@ class xmlToCode:
     def defineConnection(self, pointA, pointB) -> None:
         self.connections.append({'PontaA' : self.getConnection(pointA), 'typeA' : self.getType(pointA), 'PontaB' : self.getConnection(pointB), 'typeB' : self.getType(pointB)})
   
+    def defineSpecializations(self) -> None:
+        for entity in self.entities:
+            if entity['specializationLeader'] == 1:
+                self.findSpecializations(entity)
+    
+    def findSpecializations(self, entityLeader) -> None:
+        for entity in self.entities:
+            if entity['specializationLeader'] == 0 and entity['entityLeader'] == entityLeader['Name']:
+                entityLeader['attributes'].extend(entity['attributes'])
+                entityLeader['specializations'].append(entity['Name'])
+    
+
+
 
     # definir uma conexao
     def getConnection(self, point) -> str:
@@ -175,7 +189,8 @@ class xmlToCode:
                 self.defineSpecialization(connection)
                 connections.append(connection)
         self.linkEntitySpecializations(connections)
-        self.entities = sorted(self.entities, key=lambda d: d['specializationLeader'], reverse=True) 
+        self.entities = sorted(self.entities, key=lambda d: d['specializationLeader'], reverse=True)
+        self.defineSpecializations() 
     
     def linkEntitySpecializations(self, connections):
         for connection in connections:
@@ -241,6 +256,24 @@ class xmlToCode:
             self.translateRelationship(relationship)
     
     def translateEntity(self, entity) -> None:
+        
+        if entity['specializationLeader'] != 0:
+            self.writeEntity(entity)
+        if entity['specializationLeader'] == 1:
+            self.writeSpecialization(entity)
+    
+    def writeSpecialization(self, entity):
+        nameLeader = entity['Name']
+        string = ''
+        last = entity['specializations'][-1]
+        for special in entity['specializations']:
+            string += special
+            if special != last:
+                string += ', '
+        with open(self.fileName, 'a') as file:
+            file.write(f'specialization({nameLeader},{string})\n')
+
+    def writeEntity(self, entity):
         name = entity['Name']
         if entity['attributes'] == []:
             with open(self.fileName, 'a') as file:
@@ -248,11 +281,12 @@ class xmlToCode:
         else:
             attributes = self.parseAttributes(entity['attributes'])
             with open(self.fileName, 'a') as file:
-                file.write(f'entity({name}, {attributes})\n')
+                file.write(f'entity({name}, {attributes})\n')    
     
     def translateRelationship(self, relationship) -> None:
         name = relationship['Name']
         entitie1, entitie2 = relationship['entities'][0] , relationship['entities'][1]
+        # print(relationship)
         cardinality1, cardinality2 = relationship['cardinalities'][0] , relationship['cardinalities'][1]
         with open(self.fileName, 'a') as file:
             file.write(f'relation({name}, {entitie1} [{cardinality1}], {entitie2} [{cardinality2}])\n')

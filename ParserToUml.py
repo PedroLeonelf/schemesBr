@@ -96,10 +96,14 @@ class ParserToUml:
 
     def translateRelatedEntities(self, relatedEntities, relation):
         if relation.getMuitoParaMuitos():
+            
             self.text.append(f"{relatedEntities[0].getNome()} {self.getCardinalityArrow(relatedEntities[0].getCardinalidade().upper())}-> {relation.getNome()}")
             self.text.append(f"{relation.getNome()} <--{self.getInversedCardinalityArrow(relatedEntities[1].getCardinalidade().upper())} {relatedEntities[1].getNome()}")
         else:
-            self.text.append(f"{relatedEntities[0].getNome()} {self.getCardinalityArrow(relatedEntities[0].getCardinalidade().upper())}--{self.getInversedCardinalityArrow(relatedEntities[1].getCardinalidade().upper())} {relatedEntities[1].getNome()}")
+            if relatedEntities[0].key or relatedEntities[1].key:
+                self.text.append(f"{relatedEntities[0].getNome()} {self.getCardinalityArrow(relatedEntities[0].getCardinalidade().upper())}-[bold]-{self.getInversedCardinalityArrow(relatedEntities[1].getCardinalidade().upper())} {relatedEntities[1].getNome()}")    
+            else:
+                self.text.append(f"{relatedEntities[0].getNome()} {self.getCardinalityArrow(relatedEntities[0].getCardinalidade().upper())}--{self.getInversedCardinalityArrow(relatedEntities[1].getCardinalidade().upper())} {relatedEntities[1].getNome()}")
 
     def getCardinalityArrow(self, cardinality):
         if cardinality == '[0:1]':

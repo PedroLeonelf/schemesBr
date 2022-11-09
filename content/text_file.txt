@@ -1,13 +1,27 @@
 allowmixing
 @startuml
-Entity Entidade1{
+Entity Empregado{
+- nome
+- cpf
+- tipo_empregado
+- crea
 }
-Entity Entidade2{
+usecase  gerente
+Empregado -->  gerente
+usecase  secretario
+Empregado -->  secretario
+usecase  engenheiro
+Empregado -->  engenheiro
+Entity Departamento{
 }
-Entity Rel{
-- atributo1
-- atributo2
+Entity Projeto{
 }
-Entidade1 |o--|{ Rel
-Entidade2 |o--|{ Rel
+Entity Ata_De_Reuniao{
+}
+Entity Participacao{
+}
+Empregado }o--|| Departamento
+Empregado ||--o{ Ata_De_Reuniao
+Empregado |o-[bold]-|{ Participacao
+Projeto |o-[bold]-|{ Participacao
 @enduml
