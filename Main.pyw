@@ -40,6 +40,8 @@ if __name__ == '__main__':
             blocoDeNotas.wordCounter(values)
         elif event == "About":
             blocoDeNotas.aboutMe()
+        elif event == "Compare files":
+            blocoDeNotas.compare()
         if window == janelaVizualizador and event == sg.WIN_CLOSED:
             janelaVizualizador.close()
         if window == janelaVizualizador and event == "Save":

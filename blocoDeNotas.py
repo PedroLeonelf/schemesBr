@@ -1,5 +1,6 @@
 import PySimpleGUI as smp
 import Parser as parser
+import testGraphs as tg
 
 newFile = "New (CTRL + N)"
 openFile = "Open...(CTRL + O)"
@@ -13,7 +14,7 @@ class blocoDeNotas:
 
         layoutMenu = [
             ["File", [newFile, openFile, saveFile, "Save as", "---", "Exit"]],
-            ["Tools", ["Word counter", "Run code"]],
+            ["Tools", ["Word counter", "Run code", "Compare files"]],
             ["Configuration", ["Read the content"]],
             ["Help", ["About"]]
         ]
@@ -54,6 +55,21 @@ class blocoDeNotas:
                 self.window["_BODY_"].update(value=f.read())
                 self.window["_INFO_"].update(value=self.fileName.split('/')[-1])
         return self.fileName
+
+    def compare(self) -> None:
+        try:
+            self.fileNames = smp.popup_get_file("Open files", no_window=True, multiple_files=True)
+        except:
+            return
+        
+        try:
+            if self.fileNames not in (None, ''):
+                file1 = self.fileNames[0]
+                file2 = self.fileNames[1]
+                print(f'Similarity: {tg.teste_arquivos(file1, file2)}')
+        except:
+            print('Invalid files!')
+            
 
     def save_file(self, fileName, values):
         if fileName not in (None, ''):

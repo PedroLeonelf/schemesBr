@@ -1,27 +1,24 @@
 allowmixing
 @startuml
-Entity Empregado{
-- nome
-- cpf
-- tipo_empregado
-- crea
+Entity Pessoa{
++ ID
+--
+- CPF
+- Endereco
 }
-usecase  gerente
-Empregado -->  gerente
-usecase  secretario
-Empregado -->  secretario
-usecase  engenheiro
-Empregado -->  engenheiro
-Entity Departamento{
+Entity Compra{
++ ID
+--
+- Data
+- Total
 }
-Entity Projeto{
+Entity Item{
++ ID
+--
+- Nome
+- Qtd
+- Preco
 }
-Entity Ata_De_Reuniao{
-}
-Entity Participacao{
-}
-Empregado }o--|| Departamento
-Empregado ||--o{ Ata_De_Reuniao
-Empregado |o-[bold]-|{ Participacao
-Projeto |o-[bold]-|{ Participacao
+Pessoa ||--|{ Compra
+Compra ||--|{ Item
 @enduml

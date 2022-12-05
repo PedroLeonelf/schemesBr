@@ -34,7 +34,7 @@ class xmlToCode:
         for entity in self.root.iter('Entidade'): 
             item = entity.find('Texto')
             position = entity.find('Bounds')
-            self.entities.append({'specializationLeader' : -1,'Name':item.text.replace(' ', '_'), 'id' : entity.attrib['ID'], 'attributes' : [], 'position' : [position.attrib['Left'], position.attrib['Top']], 'specializations' : []})
+            self.entities.append({'specializationLeader' : -1,'Name':item.text.replace(' ', '_'), 'id' : entity.attrib['ID'], 'attributes' : [], 'position' : [position.attrib['Left'], position.attrib['Top']], 'specializations' : [], 'cardinalities': [0,0]})
 
     # nomes dos relacionamentos
     def getRelationships(self) -> None:
@@ -165,21 +165,36 @@ class xmlToCode:
                 self.linkRelationshipEntities(connection)    
         
     def linkRelationshipEntities(self, connection) -> None:
+        
         relationship = connection['PontaA'] if connection['typeA'] == 'Relationship' else connection['PontaB']
         entity = connection['PontaA'] if connection['typeA'] == 'Entity' else connection['PontaB']
         for item in self.relationships:
             if item['Name'] == relationship:
                 item['entities'].append(entity)
     
+    def returnEntitySpecial(self, entityName):
+        for entity in self.entities:
+            if entity['Name'] == entityName and entity['specializationLeader'] == 0:
+                return entity['entityLeader']
+        return entityName
+
+    
     def linkCardinalities(self) -> None:
-        minorDiff = 0
-        entityLink = self.entities[0]
+        
+        
+        for entityLink in self.entities:
+            self.linkCardinality(entityLink)
+    
+    def linkCardinality(self, entityLink) -> None:
+        minorDiff = self.getDiffPosition(self.cardinalities[0], self.entities[0])
         for cardinality in self.cardinalities:
+            
             for entity in self.entities:
                 diff = self.getDiffPosition(cardinality, entity)
                 if diff < minorDiff: 
                     minorDiff = diff
                     entityLink = entity
+          
             self.defineCardinalityInRelationship(entityLink, cardinality)
     
     def linkSpecializations(self) -> None:
@@ -239,9 +254,11 @@ class xmlToCode:
 
     def defineCardinalityInRelationship(self, entity, cardinality) -> None:
         for relationship in self.relationships:
+            print(relationship['entities'], cardinality)    
             if entity['Name'] in relationship['entities']  and len(relationship['cardinalities']) < 2:
                 relationship['cardinalities'].append(cardinality['value'])
                 return
+   
     
 
     def getDiffPosition(self, cardinality, entity) -> int:
@@ -252,6 +269,7 @@ class xmlToCode:
         with open(self.fileName, 'w') as file: None # cria ou esvazia o arquivo
         for entity in self.entities:
             self.translateEntity(entity)
+        self.translateSpecializations()
         for relationship in self.relationships:
             self.translateRelationship(relationship)
     
@@ -259,8 +277,13 @@ class xmlToCode:
         
         if entity['specializationLeader'] != 0:
             self.writeEntity(entity)
-        if entity['specializationLeader'] == 1:
-            self.writeSpecialization(entity)
+
+    
+    def translateSpecializations(self) -> None:
+        for entity in self.entities:
+            if entity['specializationLeader'] == 1:
+                self.writeSpecialization(entity)
+                
     
     def writeSpecialization(self, entity):
         nameLeader = entity['Name']
@@ -288,6 +311,7 @@ class xmlToCode:
         entitie1, entitie2 = relationship['entities'][0] , relationship['entities'][1]
         # print(relationship)
         cardinality1, cardinality2 = relationship['cardinalities'][0] , relationship['cardinalities'][1]
+        
         with open(self.fileName, 'a') as file:
             file.write(f'relation({name}, {entitie1} [{cardinality1}], {entitie2} [{cardinality2}])\n')
 
@@ -324,7 +348,7 @@ class xmlToCode:
 xml = xmlToCode()
 
 # xml.printCardinalities()
-xml.printEntities()
+# xml.printEntities()
 # xml.printCardinalities()
-# xml.printRelationships()
+xml.printRelationships()
 # xml.printConnections()

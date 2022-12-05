@@ -357,10 +357,10 @@ def teste_arquivos(arq1, arq2):
 # teste_arquivos('modelosTarefas/atividadesSpecialization/gabarito.txt', 'modelosTarefas/atividadesSpecialization/22.txt'),# 89
 # ]# 
 
-lst = [teste_arquivos('modelosTarefas/testes/teste1.txt', 'modelosTarefas/testes/teste2.txt')]
+# lst = [teste_arquivos('modelosTarefas/testes/teste1.txt', 'modelosTarefas/testes/teste2.txt')]
 
-for chave, item in enumerate(lst):
-    print(f'{chave+1} - {item}')
+# for chave, item in enumerate(lst):
+    # print(f'{chave+1} - {item}')
 
 # teste_arquivos('textos/specialization1', 'textos/specialization2')
 
