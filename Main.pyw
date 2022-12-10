@@ -3,7 +3,6 @@ from subprocess import run
 import PySimpleGUI as sg
 from blocoDeNotas import *
 import Parser as parser
-import ParserToUml as parserToUml
 import PySimpleGUI as smp
 
 
@@ -47,7 +46,6 @@ if __name__ == '__main__':
             actualParser.traduzLinhas()
             if actualParser.getModelo() != None:
                 actualParser.getModelo().getNomes()
-                parserUml = parserToUml.ParserToUml(actualParser.getModelo())
 
                 
         
