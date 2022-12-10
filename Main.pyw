@@ -35,15 +35,13 @@ if __name__ == '__main__':
             fileName = blocoDeNotas.saveFileAs(values)
         elif event == "About":
             blocoDeNotas.aboutMe()
-        elif event == "Compare files":
+        elif event == "Compare schemas":
             blocoDeNotas.compare()
-        if window == janelaVizualizador and event == sg.WIN_CLOSED:
-            janelaVizualizador.close()
-        if window == janelaVizualizador and event == "Save":
-            vizualizador.save_image()
+
+
 
             
-        elif window == janelaBlocoDeNotas and event == "Run code" or event == 'r:82':
+        elif window == janelaBlocoDeNotas and event == compileTxt or event == 'r:82':
             blocoDeNotas.updateConsole()
             actualParser.setLinhas(blocoDeNotas.readContent(values))
             actualParser.traduzLinhas()

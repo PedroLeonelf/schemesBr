@@ -5,6 +5,7 @@ import testGraphs as tg
 newFile = "New (CTRL + N)"
 openFile = "Open...(CTRL + O)"
 saveFile = "Save(CTRL + S)"
+compileTxt = 'Compile (CTRL + R)'
 class blocoDeNotas:
     def __init__(self) -> None:
         smp.change_look_and_feel("DarkBlack")
@@ -14,13 +15,14 @@ class blocoDeNotas:
 
         layoutMenu = [
             ["File", [newFile, openFile, saveFile, "Save as", "---", "Exit"]],
-            ["Tools", ["Run code", "Compare files"]],
-            ["Configuration", ["Read the content"]],
-            ["Help", ["About"]]
+            ["Tools", [compileTxt, "Compare schemas"]],
+            ["Help", ['About']]
         ]
 
         layout = [
             [smp.Menu(layoutMenu)],
+           
+            
             [smp.Text("New file", font=("Consolas", 10), size=(WIN_W, 1), key="_INFO_")],
             [smp.Multiline(font=("Consolas", 12), size=(WIN_W-30, WIN_H-10), key="_BODY_")],
             [smp.Output(font=('Consolas', 10), size=(WIN_W,WIN_H-25), key="_CONSOLE_")]
@@ -94,7 +96,7 @@ class blocoDeNotas:
 
         
     def aboutMe(self):
-        smp.PopupQuick('Author: Pedro Leonel, Computação, UFSM\n Models: PlantUML distributed by LGPL.', auto_close=False)
+        smp.PopupQuick('Author: Pedro Leonel, Computação, UFSM', auto_close=False)
 
     def readContent(self, values):
         words = [w for w in values['_BODY_'].split('\n') if w!=' ' and w!='']
