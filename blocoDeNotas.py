@@ -14,7 +14,7 @@ class blocoDeNotas:
 
         layoutMenu = [
             ["File", [newFile, openFile, saveFile, "Save as", "---", "Exit"]],
-            ["Tools", ["Word counter", "Run code", "Compare files"]],
+            ["Tools", ["Run code", "Compare files"]],
             ["Configuration", ["Read the content"]],
             ["Help", ["About"]]
         ]
@@ -90,10 +90,7 @@ class blocoDeNotas:
             self.window['_INFO_'].update(value=fileName.split('/')[-1])
         return fileName
 
-    def wordCounter(self, values):
-        words = [w for w in values['_BODY_'].split(' ') if w!='\n']
-        word_count = len(words)
-        smp.PopupQuick('Counter: {:,d}'.format(word_count), auto_close=False)
+
 
         
     def aboutMe(self):

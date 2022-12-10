@@ -3,22 +3,22 @@ allowmixing
 Entity Pessoa{
 + ID
 --
-- CPF
+- RG
 - Endereco
 }
-Entity Compra{
-+ ID
+Entity Doacao{
++ id
 --
-- Data
+- doador
 - Total
 }
-Entity Item{
+Entity Instituicao{
 + ID
 --
 - Nome
-- Qtd
+- orgao
 - Preco
 }
-Pessoa ||--|{ Compra
-Compra ||--|{ Item
+Pessoa ||--|{ Doacao
+Doacao ||--|{ Instituicao
 @enduml
