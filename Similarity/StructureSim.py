@@ -32,7 +32,7 @@ class Structure:
             tmp = []
             for entiti2 in entities2:
                 tmp.append(scores[f'{entiti1.getNome().lower()}-{entiti2.getNome().lower()}'])
-                print(f'entitie1:{entiti1.getNome().lower()} ent2:{entiti2.getNome().lower()}, tmp:{tmp}')
+                
 
             if tmp != []:
                 vect.append(max(tmp))

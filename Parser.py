@@ -29,7 +29,7 @@ class Parser:
             self.modelo = None
             print(e)
             return
-        print("Compilation complete.")
+        
 
 
     def traduzLinha(self, linha):

@@ -28,7 +28,7 @@ class blocoDeNotas:
             [smp.Output(font=('Consolas', 10), size=(WIN_W,WIN_H-25), key="_CONSOLE_")]
             ]
 
-        self.window = smp.Window("Modelo Conceitual", layout=layout, margins=(0,0), resizable=True, return_keyboard_events=True, finalize=True)
+        self.window = smp.Window("SchemesBr", layout=layout, margins=(0,0), resizable=True, return_keyboard_events=True, finalize=True)
         self.window.read(timeout=1)
         self.window["_BODY_"].expand(expand_x=True, expand_y=True)
         self.window["_CONSOLE_"].expand(expand_x=True, expand_y=True)
@@ -43,6 +43,7 @@ class blocoDeNotas:
     def new_file(self):
         self.window["_BODY_"].update(value='')
         self.window["_INFO_"].update(value="New file")
+        self.window["_CONSOLE_"].update(value='')
         filename = None
         return filename
 
@@ -67,8 +68,13 @@ class blocoDeNotas:
         try:
             if self.fileNames not in (None, ''):
                 file1 = self.fileNames[0]
-                file2 = self.fileNames[1]
-                print(f'Similarity: {tg.teste_arquivos(file1, file2)}')
+                files = self.fileNames[1:]
+                for file in files:
+                    name1, name2 = file1.split('/')[-1], file.split('/')[-1]
+                    simValue = tg.teste_arquivos(file1, file)
+                    print(f'Similarity complete {name1} - {name2}!')
+                    print(f'Similarity: {simValue}%')
+                
         except:
             print('Invalid files!')
             

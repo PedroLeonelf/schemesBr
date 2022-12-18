@@ -46,6 +46,7 @@ if __name__ == '__main__':
             actualParser.traduzLinhas()
             if actualParser.getModelo() != None:
                 actualParser.getModelo().getNomes()
+            print("Compilation complete.")
 
                 
         

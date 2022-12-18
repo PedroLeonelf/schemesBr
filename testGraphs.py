@@ -7,6 +7,7 @@ import Parser
 
 
 from GrafoValorado import *
+from Xml.xmlToCode import xmlToCode
 
 
 def test_any_exemple(vect1, ligacoes1, vect2 = None, ligacoes2 = None):
@@ -268,11 +269,10 @@ def retorna_modelo(arquivo):
     parser.traduzLinhas()
     modelo = parser.getModelo()
     entidadeSemAtributo(modelo)
-    print(f"Arquivo:{arquivo} modelo:{parser.getModelo()}")
+    # print(f"Arquivo:{arquivo.split('/')[-1]}\n")
     return modelo
 
 def entidadeSemAtributo(modelo):
-    print(f'Aqui: {modelo}')
     for entidade in modelo.getEntidades():
         if entidade.getAtributos() == []:
             entidade.setAtributo('none')
@@ -290,22 +290,38 @@ def getGrafo(modelo):
         grafo.adicionaAresta(entidade1.getNome(), entidade2.getNome(), entidade1.getCardinalidade(), entidade2.getCardinalidade())
     return grafo
 
+def parseXml(arq):
+    xml = xmlToCode()
+    xml.translateFile(arq)
+    return xml.fileName #return translated code location
+
+
 def teste_arquivos(arq1, arq2):
+    if '.xml' in arq1:
+        arq1 = parseXml(arq1)
+    if '.xml' in arq2:
+        arq2 = parseXml(arq2)
     return sim.graphSimiliarity(retorna_modelo(arq1), retorna_modelo(arq2))
+
+
 
 # teste_artigo()
 
+lst = []
+
 # lst = [teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo1') # 100
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo2') # 97
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo3') # 95
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo2') # 98
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo3') # 96
 # ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo4') # 93
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo5') # 88
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo6') # 84 
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo7') # 82
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo5') # 89
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo6') # 86 
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo7') # 83
 # ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo8') # 79
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo9') # 71
-# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo10')# 63
-# ]# teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo11')
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo9') # 72
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo10')# 64
+# ,teste_arquivos('codigo modelos/exemplo1', 'codigo modelos/exemplo11')
+# ]# 
+
 
 # lst = [
 # teste_arquivos('modelosTarefas/atividades/gabarito.txt', 'modelosTarefas/atividades/1.txt'), # 85
@@ -359,8 +375,10 @@ def teste_arquivos(arq1, arq2):
 
 # lst = [teste_arquivos('modelosTarefas/testes/teste1.txt', 'modelosTarefas/testes/teste2.txt')]
 
-# for chave, item in enumerate(lst):
-    # print(f'{chave+1} - {item}')
+
+
+for chave, item in enumerate(lst):
+    print(f'{chave+1} - {item}')
 
 # teste_arquivos('textos/specialization1', 'textos/specialization2')
 

@@ -4,14 +4,16 @@ import xml.etree.ElementTree as ET
 
 class xmlToCode:
     def __init__(self) -> None:
-        tree = ET.parse('xml/conceitual.xml', parser = ET.XMLParser(encoding = 'iso-8859-5'))
-        self.root = tree.getroot()
         self.fileName = 'xml/translatedText.txt'
         self.entities = []
         self.relationships = []
         self.attributes = []
         self.connections = []
         self.cardinalities = []
+    
+    def translateFile(self, path):
+        tree = ET.parse(path, parser = ET.XMLParser(encoding = 'iso-8859-5'))
+        self.root = tree.getroot()
         self.initializeGets()
     
     def initializeGets(self) -> None:
@@ -346,6 +348,7 @@ class xmlToCode:
 
 
 xml = xmlToCode()
+xml.translateFile('xml/conceitual.xml')
 
 # xml.printCardinalities()
 # xml.printEntities()
