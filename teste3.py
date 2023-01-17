@@ -140,7 +140,59 @@ def lcs_init(string1, string2):
 
 # print(similiarityBetweenStrings('qtd', 'quantidade')) #sim 46%
 
-# print(lcs_init('prod', 'prod_vendido'))
+# print(lcs_init('prod', 'consumidor'))
+# print(lcs_init('prod', 'nota'))
+# print(lcs_init('cliente', 'prod_vendido'))
+# print(lcs_init('cliente', 'nota'))
+# print(lcs_init('nota_fiscal', 'prod_vendido'))
+# print(lcs_init('nota_fiscal', 'consumidor'))
+# print(lcs_init('nota_fiscal', 'nota'))
+
+# print(lcs_init('id', 'data'))
+# print(lcs_init('id', 'total'))
+# print(lcs_init('data-venda', 'id'))
+# print(lcs_init('data-venda', 'total'))
+# print(lcs_init('valor', 'id'))
+# print(lcs_init('valor', 'data'))
+# print(lcs_init('qtd', 'data'))
+# print(lcs_init('qtd', 'total'))
+
+# print(lcs_init('produto', 'vendedor'))
+# print(lcs_init('produto', 'comprador'))
+# print(lcs_init('vendedor', 'comprador'))
+#--------------------------------------------
+# print(lcs_init('comprador', 'cliente'))
+# print(lcs_init('comprador', 'nota fiscal'))
+# print(lcs_init('comprador', 'produto vendido'))
+
+# print(lcs_init('compra', 'cliente'))
+# print(lcs_init('compra', 'nota fiscal'))
+# print(lcs_init('compra', 'produto vendido'))
+
+# print(lcs_init('item', 'cliente'))
+# print(lcs_init('item', 'nota fiscal'))
+# print(lcs_init('item', 'produto vendido'))
+
+# print(lcs_init('cod_cliente', 'id') * 0.8)
+# print(lcs_init('id', 'nome') * 0.8)
+# print(lcs_init('id', 'telefone') * 0.8)
+
+# print(lcs_init('cpf', 'cod_cliente') * 0.8)
+# print(lcs_init('cpf', 'nome') * 0.8)
+# print(lcs_init('cpf', 'telefone') * 0.8)
+
+# print(lcs_init('id', 'cod_produto') * 0.8 + 0.2)
+# print(lcs_init('id', 'quantidade') * 0.8)
+# print(lcs_init('id', 'nome') * 0.8)
+
+# print(lcs_init('preco', 'cod_produto') * 0.8)
+# print(lcs_init('preco', 'quantidade') * 0.8 + 0.2)
+# print(lcs_init('preco', 'nome') * 0.8 + 0.2)
+ 
+
+
+
+
 
 # print(abbreviationDetector('cpf', 'codigo_pessoa_fisica')) #sim 100%
 

@@ -12,14 +12,15 @@ utilizeSynonym = False
 
 #### string similiarity functions#################################################################
 def mainComparatorStrings(string1, string2):
-    # print(f"{string1} == {string2}")
+    
 
     isSimiliarityRate = lcs_init(string1, string2)
-    if isSimiliarityRate > 0.8:
+    if isSimiliarityRate > 0.9:
         return isSimiliarityRate
     sinonymRate = (isSinonym(string1, string2) if not english_text else is_sinonym_english(string1,string2)) if utilizeSynonym else 0  
     maximo = max(isSimiliarityRate, sinonymRate)
-    # print(f"Valor maior:{maximo}\n")
+    # print(f"{string1} == {string2}")
+    # print(f"Valor maior:{maximo} {lcs_init(string1,string2)}\n")
     return maximo
 
 
@@ -82,6 +83,7 @@ def checkAttributeSimiliarity(attribute, attributes, key):
     return max(vector)
 
 def equalKey(key1, key2):
+    # print(key1,key2)
     if key1 == key2:
         return 1
     return 0

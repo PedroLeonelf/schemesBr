@@ -1,4 +1,4 @@
-entity(empregado, nome, key cpf, tipo_empregado, crea)
+entity(empregado, nome, key cpf, tipo_empregado)
 entity(departamento, nome, key id)
 entity(projeto, key id, nome)
 entity(ata_de_reuniao, data, key id)

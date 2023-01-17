@@ -9,7 +9,7 @@ gama = 0.1
 def defineFinalScore(scoreEntitties, scoreAttribute, scoreStructure, entidades) -> float:
     repeteadDic = integrateDics(scoreEntitties, scoreAttribute, scoreStructure)
     finalDict = getMostBiggerDictionaries(repeteadDic, entidades)
-    print(finalDict)
+    # print(finalDict)
     return average(finalDict.values())
 
 

@@ -244,7 +244,7 @@ class xmlToCode:
         specialization = self.findSpecialization(specializationId)
         specialPos = specialization['position'][1]
         entityPos = entity['position'][1]
-        print(specialPos, entityPos)
+        # print(specialPos, entityPos)
         return specialPos > entityPos
     
     def findSpecialization(self, id) -> dict:
@@ -256,7 +256,7 @@ class xmlToCode:
 
     def defineCardinalityInRelationship(self, entity, cardinality) -> None:
         for relationship in self.relationships:
-            print(relationship['entities'], cardinality)    
+            # print(relationship['entities'], cardinality)    
             if entity['Name'] in relationship['entities']  and len(relationship['cardinalities']) < 2:
                 relationship['cardinalities'].append(cardinality['value'])
                 return
@@ -353,5 +353,5 @@ xml.translateFile('xml/conceitual.xml')
 # xml.printCardinalities()
 # xml.printEntities()
 # xml.printCardinalities()
-xml.printRelationships()
+# xml.printRelationships()
 # xml.printConnections()

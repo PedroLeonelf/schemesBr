@@ -1,6 +1,4 @@
-from subprocess import run
 
-import PySimpleGUI as sg
 from blocoDeNotas import *
 import Parser as parser
 import PySimpleGUI as smp

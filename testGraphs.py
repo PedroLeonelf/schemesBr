@@ -376,9 +376,9 @@ lst = []
 # lst = [teste_arquivos('modelosTarefas/testes/teste1.txt', 'modelosTarefas/testes/teste2.txt')]
 
 
+teste_arquivos('textos/modelo 1', 'textos/modelo2')
 
 for chave, item in enumerate(lst):
     print(f'{chave+1} - {item}')
 
-# teste_arquivos('textos/specialization1', 'textos/specialization2')
 

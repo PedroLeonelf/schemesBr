@@ -1,0 +1,5 @@
+entity(cliente, key cod_cliente, nome, telefone)
+entity(nota_fiscal, key cod_nota, dt_nota, total_nota)
+entity(produto_vendido, key cod_produto, quantidade, nome)
+relation(cliente-nota, cliente [1:1], nota_fiscal [0:n])
+relation(nota_produto, nota_fiscal [1:1], produto_vendido [0:n])
